@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE billete>
+<billete>
+    <datos>
+        <Datospasajero>
+            <nombre>Pablo</nombre>
+            <apellidos>Fernández Cornejo</apellidos>
+        </Datospasajero>
+
+        <Datosaeropuerto>
+            <origen>Madrid - Adolfo Suarez</origen>
+            <destino>Roma - Leonardo da Vinci</destino>
+        </Datosaeropuerto>
+
+        <fechaHora>
+            <fechaRegreso>19/04/2026</fechaRegreso>
+            <horaRegreso>20:00h</horaRegreso>
+        </fechaHora>
+    </datos>
+</billete>

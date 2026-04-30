@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE equipos>
+<equipos>
+    <equipo>
+        <nombre>Real Madrid</nombre>
+        <ciudad>Madrid</ciudad>
+        <entrenador/>
+        <jugadores>
+            <jugador posicion="delantero">
+                <nombre>Vinícius Jr.</nombre>
+                <nacionalidad>Brasil</nacionalidad>
+            </jugador>
+            <jugador posicion="medio">
+                <nombre>Jude Bellingham</nombre>
+                <nacionalidad>Inglaterra</nacionalidad>
+            </jugador>
+        </jugadores>
+    </equipo>
+    <equipo>
+        <nombre>FC Barcelona</nombre>
+        <ciudad>Barcelona</ciudad>
+        <entrenador/>
+        <jugadores>
+            <jugador posicion="delantero">
+                <nombre>Robert Lewandowski</nombre>
+                <nacionalidad>Polonia</nacionalidad>
+            </jugador>
+            <jugador posicion="defensa">
+                <nombre>Ronald Araújo</nombre>
+                <nacionalidad>Uruguay</nacionalidad>
+            </jugador>
+        </jugadores>
+    </equipo>
+</equipos>

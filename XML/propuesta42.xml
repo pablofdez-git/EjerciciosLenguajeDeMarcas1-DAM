@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv id="001">
+	<nombre>Alberto</nombre>
+	<apellidos>Álvarez</apellidos>
+	<anyo-nacimiento>1952</anyo-nacimiento>
+	<residencia>
+		<ciudad>Valladolid</ciudad>
+		<pais>España</pais>
+	</residencia>
+	<contacto>
+		<telefono>666 666 666</telefono>
+		<email>albalv@correo.es</email>
+		<linkedin>http://www.linkedin.com/albalv</linkedin>
+	</contacto>
+	<descripcion>
+		Gran capacidad creativa. Interesado en el diseño de videojuegos
+	</descripcion>
+	<competencias>
+		<competencia nombre="diseño" nivel="alto"/>
+		<competencia nombre="trabajo en equipo" nivel="medio"/>
+		<competencia nombre="musica" nivel="alto"/>
+	</competencias>
+	<formacion>
+		<titulacion nombre="Diseño industrial" centro="UVa" anio="1975"/>
+	</formacion>
+	<experiencia-profesional>
+		<experiencia id="1">
+			<puesto>Diseñador de juegos</puesto>
+			<empresa>Nintendo</empresa>
+			<inicio>1977</inicio>
+			<fin>1999</fin>
+		</experiencia>
+		<experiencia id="2">
+			<puesto>Diseñador de juegos</puesto>
+			<empresa>GameDeveloper</empresa>
+			<inicio>2000</inicio>
+			<fin></fin>
+		</experiencia>
+	</experiencia-profesional>
+</cv>

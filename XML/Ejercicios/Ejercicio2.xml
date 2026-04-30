@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pedido>
+
+<pedido>
+    <datosCliente>
+        <nombre>Juan Pérez</nombre>
+        <direccionEntrega>Calle Mayor 15</direccionEntrega>
+    </datosCliente>
+
+    <listaProductos>
+        <producto cantidad="2">
+            <nombre>Hamburguesa clásica</nombre>
+            <precio>5.99€</precio>
+        </producto>
+        <producto cantidad="1">
+            <nombre>Patatas fritas</nombre>
+            <precio>2.50€</precio>
+        </producto>
+        <producto cantidad="3">
+            <nombre>Refresco</nombre>
+            <precio>1.80€</precio>
+        </producto>
+    </listaProductos>
+</pedido>

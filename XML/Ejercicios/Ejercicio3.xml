@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE factura>
+<factura>
+    <numero>F-2026-001</numero>
+    <fecha>2026-04-14</fecha>
+    <cliente>
+        <nombre>Juan Pérez</nombre>
+        <direccion>Calle Mayor 15</direccion>
+    </cliente>
+    <listadoProductos>
+        <producto id="1">
+            <nombre>Hamburguesa clásica</nombre>
+            <numeroUnidades>2</numeroUnidades>
+            <precioUnitario>5.99</precioUnitario>
+            <subtotal>11.98</subtotal>
+            <iva>21%</iva>
+            <total>14.50</total>
+        </producto>
+        <producto id="2">
+            <nombre>Patatas fritas</nombre>
+            <numeroUnidades>1</numeroUnidades>
+            <precioUnitario>2.50</precioUnitario>
+            <subtotal>2.50</subtotal>
+            <iva>10%</iva>
+            <total>2.75</total>
+        </producto>
+        <producto id="3">
+            <nombre>Refresco</nombre>
+            <numeroUnidades>3</numeroUnidades>
+            <precioUnitario>1.80</precioUnitario>
+            <subtotal>5.40</subtotal>
+            <iva>21%</iva>
+            <total>6.53</total>
+        </producto>
+    </listadoProductos>
+    <totalFactura></totalFactura>
+</factura>

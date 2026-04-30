@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Viaje turistico -->
+
+<viaje>
+	<cliente>
+		<nombre>Fernando</nombre>
+		<apellido1>Paniagua</apellido1>
+		<apellido2>Martín</apellido2>
+	</cliente>
+	<fecha-inicio>01-06-2024</fecha-inicio>
+	<fecha-fin>30-06-2024</fecha-fin>
+	<origen>Madrid</origen>
+
+	<!-- Opcion A -->
+	<destinos>
+		<destino ciudad="Rio de Janerio" hotel="Hilton Rio de Janeiro" noches="10"/>
+		<destino ciudad="Sao Paulo" hotel="Palacio Tangará" noches="10"/>
+		<destino ciudad="Salvador de Bahia" hotel="Hotel Bahia do Sol" noches="8"/>
+	</destinos>
+
+	<!-- Opcion B -->
+	<destinos>
+		<destino>
+			<ciudad>Rio de Janerio</ciudad>
+			<hotel>Hilton Rio de Janeiro</hotel>
+			<noches>10</noches>
+		</destino>
+		<destino>
+			<ciudad>Sao Paulo</ciudad>
+			<hotel>Palacio Tangará</hotel>
+			<noches>10</noches>
+		</destino>
+		<destino>
+			<ciudad>Salvador de Bahia</ciudad>
+			<hotel>Hotel Bahia do Sol</hotel>
+			<noches>8</noches>
+		</destino>
+	</destinos>
+
+	<precio-viaje> 5000€ </precio-viaje>
+</viaje>
