@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+    <header>
+        <a href="index.html"><h1 id="titulo">Formularios</h1></a>
+    </header>
+
+    <main>
+        <section>
+            <h2>Elemento &lt;form&gt; y Funcionamiento</h2>
+            <p>El elemento <code>&lt;form&gt;</code> es el contenedor que delimita los componentes interactivos que permiten al usuario introducir y enviar información. Cada control posee un nombre (atributo <code>name</code>) y un valor que se envía al servidor.</p>
+
+            <h3>Atributos Clave del &lt;form&gt;</h3>
+            <ul>
+                <li><strong>action</strong>: URL de la página o servicio al que se enviarán los datos para su procesamiento. Si los datos se manejan internamente con JavaScript, se puede usar <code>action="#"</code>.</li>
+                <li><strong>method</strong>: Determina el método de envío de los datos. Puede ser GET o POST.
+                    <ul>
+                        <li>GET: Los datos se pasan en la propia URL y son visibles en la barra de direcciones.</li>
+                        <li>POST: Los datos se envían dentro del paquete HTTP y no por la URL.</li>
+                    </ul>
+                </li>
+                <li><strong>autocomplete</strong>: Puede tomar los valores <code>ON</code> o <code>OFF</code> para que el navegador complete automáticamente los datos basándose en formularios anteriores.</li>
+                <li><strong>novalidate</strong>: Si se usa, las validaciones automáticas del navegador no se llevarán a cabo.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Controles de Entrada: &lt;input&gt;</h2>
+            <p>La mayoría de los controles de un formulario se insertan mediante el elemento <code>&lt;input&gt;</code>, cuyo tipo de control se define mediante el atributo <code>type</code>.</p>
+            <p>Los diferentes tipos de <code>&lt;input&gt;</code> ayudan al usuario en la introducción de datos y aportan seguridad mediante validaciones.</p>
+
+            <h3>Atributos Comunes del &lt;input&gt;</h3>
+            <ul>
+                <li><strong>name</strong>: Atributo fundamental que da un nombre al control. Si no se incluye, el contenido no será enviado.</li>
+                <li><strong>id</strong>: Identificador único. Aconsejado para su uso con <code>&lt;label&gt;</code> y JavaScript.</li>
+                <li><strong>required</strong>: Convierte el campo en obligatorio. Si no se rellena, la acción de envío se cancela.</li>
+                <li><strong>placeholder</strong>: Muestra un texto informativo en el campo de entrada que desaparece cuando el usuario introduce un valor.</li>
+                <li><strong>maxlength</strong> / <code>minlength</code>: Determinan la longitud máxima/mínima en campos de tipo texto.</li>
+                <li><strong>pattern</strong>: Permite colocar una expresión regular para validar que el valor introducido cumple con un patrón específico.</li>
+            </ul>
+
+        </section>
+        <section>
+            <h2>Otros Controles de Formulario</h2>
+
+            <h3>Botones: &lt;button&gt;</h3>
+            <p>Es la recomendación de HTML5. A diferencia de <code>&lt;input type="submit"&gt;</code>, permite colocar código HTML en su texto.</p>
+            <ul>
+                <li><strong>type</strong>: Puede ser <code>submit</code> envío de datos, <code>reset</code> borrado de datos o <code>button</code> botón genérico.</li>
+            </ul>
+
+            <h3>Desplegables: &lt;select&gt; y &lt;option&gt;</h3>
+            <p>Permiten seleccionar una o varias opciones de una lista.</p>
+            <ul>
+                <li><strong>&lt;select&gt;</strong>: Agrupa las opciones y da nombre al control. Atributos clave son <code>multiple</code> selección múltiple y <code>required</code>.</li>
+                <li><strong>&lt;option&gt;</strong>: Define cada opción de la lista. El atributo <code>value</code> es el que se envía al servidor.</li>
+                <li><strong>&lt;optgroup&gt;</strong>: Permite agrupar opciones dentro del desplegable.</li>
+            </ul>
+
+            <h3>Cuadro de Texto Multilínea: &lt;textarea&gt;</h3>
+            <p>Permite colocar un cuadro de texto de varias líneas para la introducción de texto largo.</p>
+            <ul>
+                <li><strong>rows</strong> y <code>cols</code>: Indican la altura en líneas y la anchura en caracteres del cuadro de texto.</li>
+            </ul>
+
+            <h3>Agrupación y Etiquetado</h3>
+            <ul>
+                <li><strong>&lt;fieldset&gt;</strong>: Permite agrupar un conjunto de controles en un formulario visual y funcionalmente, rodeándolos con un marco.</li>
+                <li><strong>&lt;legend&gt;</strong>: Asigna un título o leyenda al marco de <code>&lt;fieldset&gt;</code>.</li>
+                <li><strong>&lt;label&gt;</strong>: Asocia la etiqueta con un campo de entrada. La asociación se realiza usando el atributo <code>for</code> con el <code>id</code> del control, o conteniendo el campo de entrada.</li>
+                <li><strong>&lt;datalist&gt;</strong>: Permite añadir entradas a un campo <code>&lt;input&gt;</code> para que actúen como sugerencia de escritura.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Controles Avanzados y Validaciones</h2>
+
+            <h3>Controles Avanzados</h3>
+            <ul>
+                <li><strong>&lt;output&gt;</strong>: Se utiliza para mostrar resultados procedentes de cálculos sobre otros controles del formulario, típicamente con JavaScript.</li>
+                <li><strong>&lt;meter&gt;</strong>: Muestra gráficamente un valor como fracción o parte de algo.</li>
+                <li><strong>&lt;progress&gt;</strong>: Muestra gráficamente el grado de avance o cumplimiento de un proceso o tarea.</li>
+            </ul>
+
+            <h3>Validaciones</h3>
+            <p>Las validaciones se realizan antes del envío del formulario (al pulsar un botón <code>submit</code>) para asegurar que los datos cumplen con las restricciones establecidas.</p>
+            <p>Las reglas se definen mediante atributos del control, como <code>required</code>, <code>minlength</code>/<code>maxlength</code>, <code>min</code>/<code>max</code> para números, <code>type</code> que valida formatos como <code>email</code> y <code>pattern</code> para expresiones regulares.</p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#titulo">Volver al Titulo</a>
+    </footer>
+</body>
+</html>

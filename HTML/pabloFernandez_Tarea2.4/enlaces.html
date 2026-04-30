@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlaces</title>
+</head>
+<body>
+    <header>
+        <a href="index.html"><h1 id="titulo">Enlaces</h1></a>
+    </header>
+
+    <main>
+        <section>
+            <h2>URL (Uniform Resource Location)</h2>
+            <p>Una URL es la dirección concreta de un recurso; página web, imagen, vídeo, etc, en Internet. Es un identificador absoluto y único para un recurso almacenable.</p>
+
+            <h3>Sintaxis de una URL</h3>
+            <p>La sintaxis general es: <code>protocolo://usuario:contraseña@dominio:puerto/ruta?busqueda#fragmento</code>.</p>
+            <ul>
+                <li><strong>Protocolo o esquema de red:</strong> Define el método para acceder al recurso.</li>
+                <li><strong>Nombre de dominio:</strong> El nombre completo de la máquina o red que aloja el recurso.</li>
+                <li><strong>Ruta:</strong> El recorrido dentro del servidor para acceder al archivo deseado.</li>
+                <li><strong>Localizador interno (#fragmento):</strong> Un identificador que facilita el acceso a una parte específica dentro del recurso de destino.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Crear Enlaces en las Páginas Web con el Elemento &lt;a&gt;</h2>
+            <p>El elemento <code>&lt;a&gt;</code> es esencial para crear hipervínculos. El atributo <code>href</code> define la URL de destino.</p>
+
+            <h3>Tipos de Enlaces</h3>
+            <ul>
+                <li><strong>Enlaces Globales o Externos:</strong> Referencian recursos ubicados en servidores diferentes al que aloja la página actual. (Ej: <code>href="https://www.google.com"</code>).</li>
+                <li><strong>Enlaces Locales Relativos o Internos:</strong> Referencian recursos ubicados en el mismo servidor. Toman como punto de partida el directorio de la página actual. (Ej: <code>href="../pagina-secundaria.html"</code>).</li>
+                <li><strong>Enlaces Internos al Propio Documento:</strong> Permiten saltar a un punto concreto dentro de la misma página. Requiere marcar la posición de destino con el atributo <code>id</code>. (Ej: <code>href="#seccion-url"</code>).</li>
+                <li><strong>Enlaces Internos a Otro Documento (Fragmentos):</strong> Combinan la URL de otro documento con un localizador interno. (Ej: <code>href="otro-documento.html#seccion-clave"</code>).</li>
+            </ul>
+
+            <h3>Atributos Clave del Elemento &lt;a&gt;</h3>
+            <ul>
+                <li><strong>href</strong>: Define la URL de destino.</li>
+                <li><strong>target</strong>: Indica dónde abrir la URL enlazada:
+                    <ul>
+                        <li><strong>_self</strong>: Carga en el mismo contexto de navegación (misma pestaña, es el valor por defecto).</li>
+                        <li><strong>_blank</strong>: Carga en un nuevo contexto de navegación (nueva pestaña).</li>
+                    </ul>
+                </li>
+                <li><strong>download</strong>: Fuerza la **descarga** del recurso en lugar de abrirlo.</li>
+                <li><strong>rel</strong>: Determina la relación entre el enlace y el recurso. Valores útiles: <code>nofollow</code> (para robots de búsqueda) y <code>noreferrer</code>.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#titulo">Volver al Titulo</a>
+    </footer>
+</body>
+</html>

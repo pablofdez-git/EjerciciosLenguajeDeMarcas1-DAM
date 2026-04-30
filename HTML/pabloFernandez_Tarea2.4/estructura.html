@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Elementos estructurales</title>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><h1 id="titulo">Estructura</h1></a>
+        </header>
+        <main>
+            <p>Los elementos estructurales son aquellos que permiten la estructura de la pagina web</p>
+            <h3>Elemento &ltdiv&gt</h3>
+            <p>El elemento &ltdiv&gt; es un contenedor genérico que se utiliza para agrupar otros elementos HTML y aplicarles estilos o scripts de manera conjunta. No tiene un significado semántico específico, pero es muy útil para organizar el contenido y crear diseños complejos en una página web.</p>
+            <code>
+                &ltdiv class="contenedor"&gt;
+                    &lth2&gt;Título dentro del div&lt/h2&gt;
+                    &ltp&gt;Párrafo dentro del div.&lt/p&gt;
+                &lt/div&gt;
+            </code>
+            <h3>Elemento &ltspan&gt</h3>
+            <p>El elemento &ltspan&gt; es un contenedor en línea que se utiliza para aplicar estilos o scripts a una parte específica del texto dentro de un elemento más grande, como un párrafo o un encabezado. Al igual que &ltdiv&gt;, &ltspan&gt; no tiene un significado semántico específico, pero es útil para resaltar o modificar partes del contenido sin afectar la estructura general del documento.</p>
+            <code>
+                &ltp&gt;Este es un párrafo con un &ltspan style="color: red;"&gt;texto resaltado en rojo&lt/span&gt; dentro del párrafo.&lt/p&gt;
+            </code>
+            <h3>Elemento &ltheader&gt</h3>
+            <p>El elemento &ltheader&gt; es un contenedor que se utiliza para definir el encabezado de una página web. Contiene el logotipo, el título de la página y la navegación principal.</p>
+            <pre><code>
+                &ltheader&gt;
+                    &ltimg src="logo.png" alt="Logotipo de la página"&gt;
+                    &lth1&gt;Título de la página&lt/h1&gt;
+                    &ltnav&gt;
+                        &ltul&gt;
+                            &ltli&gt;&lta href="#inicio"&gt;Inicio&lt/a&gt;&lt/li&gt;
+                            &ltli&gt;&lta href="#sobre-nosotros"&gt;Sobre Nosotros&lt/a&gt;&lt/li&gt;
+                            &ltli&gt;&lta href="#contacto"&gt;Contacto&lt/a&gt;&lt/li&gt;
+                        &lt/ul&gt;
+                    &lt/nav&gt;
+                &lt/header&gt;
+            </code></pre>
+            <h3>Elemento &ltfooter&gt</h3>
+            <p>El elemento &ltfooter&gt; es un contenedor que se utiliza para definir el pie de página de una página web. Contiene información de contacto, derechos de autor y enlaces adicionales.</p>
+            <code>
+                &ltfooter&gt;
+                    &ltp&gt;© 2024 Mi Sitio Web. Todos los derechos reservados.&lt/p&gt;
+                    &ltp&gt;Contacto: &lta href="mailto:
+            </code>
+            <h3>Elemento &ltmain&gt</h3>
+            <p>El elemento &ltmain&gt; es un contenedor que se utiliza para definir el contenido principal de una página web. Representa la parte más importante del contenido y es único para cada página.</p>
+            <code>
+                &ltmain&gt;
+                    &lth2&gt;Contenido Principal&lt/h2&gt;
+                    &ltp&gt;Este es el contenido principal de la página.&lt/p&gt;
+                &lt/main&gt;
+            </code>
+            <h3>Elemento &ltsection&gt</h3>
+            <p>El elemento &ltsection&gt; es un contenedor que se utiliza para definir una sección temática dentro del contenido principal. Puede contener varios elementos relacionados.</p>
+            <code>
+                &ltsection&gt;
+                    &lth2&gt;Sección Temática&lt/h2&gt;
+                    &ltp&gt;Este es el contenido de la sección temática.&lt/p&gt;
+                &lt/section&gt;
+            </code>
+            <h3>Elemento &ltarticle&gt</h3>
+            <p>El elemento &ltarticle&gt; es un contenedor que se utiliza para definir un artículo independiente dentro del contenido. Puede ser una entrada de blog, una noticia o cualquier otro contenido autónomo.</p>
+            <code>
+                &ltarticle&gt;
+                    &lth2&gt;Artículo Independiente&lt/h2&gt;
+                    &ltp&gt;Este es el contenido del artículo independiente.&lt/p&gt;
+                &lt/article&gt;
+            </code>
+            <h3>Elemento &ltaside&gt</h3>
+            <p>El elemento &ltaside&gt; es un contenedor que se utiliza para definir contenido adicional o complementario relacionado con el contenido principal. Puede incluir barras laterales, anuncios o información relacionada.</p>
+            <code>
+                &ltaside&gt;
+                    &lth2&gt;Contenido Complementario&lt/h2&gt;
+                    &ltp&gt;Este es el contenido adicional relacionado con el contenido principal.&lt/p&gt;
+                &lt/aside&gt;
+            </code>
+            <h3>Elemento &ltnav&gt</h3>
+            <p>El elemento &ltnav&gt; es un contenedor que se utiliza para definir una sección de navegación en una página web. Contiene enlaces a otras partes del sitio web o a diferentes secciones dentro de la misma página.</p>
+            <code>
+                &ltnav&gt;
+                    &ltul&gt;
+                        &ltli&gt;&lta href="#inicio"&gt;Inicio&lt/a&gt;&lt/li&gt;
+                        &ltli&gt;&lta href="#sobre-nosotros"&gt;Sobre Nosotros&lt/a&gt;&lt/li&gt;
+                        &ltli&gt;&lta href="#contacto"&gt;Contacto&lt/a&gt;&lt/li&gt;
+                    &lt/ul&gt;
+                &lt/nav&gt;
+            </code>
+            <h3>Elementos &ltfigure&gt y &ltfigcaption&gt</h3>
+            <p>El elemento &ltfigure&gt; se utiliza para agrupar contenido multimedia, como imágenes, diagramas o ilustraciones, junto con su leyenda. La leyenda se define utilizando el elemento &ltfigcaption&gt;.</p>
+            <code>
+                &ltfigure&gt;
+                    &ltimg src="imagen.jpg" alt="Descripción de la imagen"&gt;
+                    &ltfigcaption&gt;Esta es la leyenda de la imagen.&lt/figcaption&gt;
+                &lt/figure&gt;
+            </code>
+        </main>
+        <footer>
+            <a href="#titulo">Volver al Titulo</a>
+        </footer>
+    </body>
+</html>

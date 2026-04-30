@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Expresiones Regulares</title>
+    </head>
+    <body>
+        <form action="#" method="POST">
+            <fieldset>
+                <legend><b>1. Nombre de usuario</b></legend>
+                <label for="nombre">Nombre: </label>
+                <input type="text" name="nombre" id="nombre" pattern="^[A-Za-z][A-Za-z0-9]{4,14}$" required>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>2. Correo Electrónico Personalizado</b></legend>
+                <label for="correo">Email:</label>
+                <input type="email" name="correo" id="correo" pattern="^[0-9a-zA-Z._]+@midominio\.com$" required>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>3. Código Postal</b></legend>
+                <label for="codigoPostal">Codigo Postal:</label>
+                <input type="text" name="codigoPostal" id="codigoPostal" pattern="^[^0][0-9]{4}$" required>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>4. Contraseña Segura</b></legend>
+                <label for="pwd">Contraseña:</label>
+                <input type="password" name="pwd" id="pwd" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,20}$" required>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>5. Nombre Completo</b></legend>
+                <label for="nombreCompleto">Nombre Completo:</label>
+                <input type="text" name="nombreCompleto" id="nombreCompleto" pattern="^[A-Z][a-z]+(\s[A-Z][a-z]+)?$" required>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>6. Numero de telefono</b></legend>
+                <label for="telefono">Telefono:</label>
+                <input type="tel" name="telefono" id="telefono" pattern="^\+34\s?(\d{3}[-\s]?){2}\d{3}$" required>
+              </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>7. Identificador de producto</b></legend>
+                <label for="identificador">Identificador:</label>
+                <input type="text" name="identificador" id="identificador" pattern="^[A-Z]{3}-\d{4}$" required>
+            </fieldset>
+            <br>
+            <input type="submit" value="enviar">
+        </form>
+    </body>
+</html>

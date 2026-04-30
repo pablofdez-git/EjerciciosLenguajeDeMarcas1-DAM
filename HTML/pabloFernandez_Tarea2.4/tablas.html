@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas en HTML</title>
+</head>
+<body>
+    <header>
+        <a href="index.html"><h1 id="titulo">Tablas</h1></a>
+    </header>
+
+    <main>
+        <section>
+            <h2>Estructura Básica: &lt;table&gt;, &lt;tr&gt; y &lt;td&gt;</h2>
+            <p>La estructura fundamental de una tabla se basa en tres elementos:</p>
+
+            <ul>
+                <li><strong>&lt;table&gt;</strong>: Delimita toda la tabla y es el contenedor principal.</li>
+                <li><strong>&lt;tr&gt;</strong>: Representa una fila de la tabla (Table Row). Contiene las celdas de la fila.</li>
+                <li><v>&lt;td&gt;</v>: Representa una celda de datos (Table Data) dentro del cuerpo de la tabla.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Elementos de Marcado Semántico</h2>
+            <p>HTML cuenta con elementos específicos para dar significado estructural a las diferentes partes de la tabla:</p>
+
+            <ul>
+                <li><strong>&lt;caption&gt;</strong>: Proporciona un título descriptivo a la tabla. Debe ser el primer elemento dentro de <code>&lt;table&gt;</code>.</li>
+                <li><strong>&lt;thead&gt;</strong>: Contiene el conjunto de filas que forman el encabezado de la tabla. Suele ir antes del cuerpo.</li>
+                <li><strong>&lt;tbody&gt;</strong>: Delimita el cuerpo de la tabla, que contiene los datos principales. Una tabla puede tener varios <code>&lt;tbody&gt;</code>.</li>
+                <li><strong>&lt;tfoot&gt;</strong>: Contiene el conjunto de filas que forman el pie de la tabla. Se usa para mostrar totales, acumulados o resúmenes.</li>
+                <li><strong>&lt;th&gt;</strong>: Representa una celda de encabezado. Su contenido aparece en negrita por defecto y se utiliza dentro de <code>&lt;thead&gt;</code> o <code>&lt;tfoot&gt;</code>.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Agrupación de Columnas y Combinación de Celdas</h2>
+
+            <h3>Agrupación de Columnas: &lt;colgroup&gt; y &lt;col&gt;</h3>
+            <p>Estos elementos se usan para agrupar columnas y aplicarles un formato homogéneo o propiedades:</p>
+            <ul>
+                <li><strong>&ltcode&gt&lt;colgroup&gt;</strong>: Permite realizar agrupaciones de columnas. Debe ser de las primeras etiquetas dentro de <code>&lt;table&gt;</code>.</li>
+                <li><strong>&lt;col&gt;</strong>: Se usa dentro de <code>&lt;colgroup&gt;</code> para aplicar propiedades a las columnas. El atributo <code>span</code> determina el número de columnas consecutivas a agrupar.</li>
+            </ul>
+
+
+            <h3>Combinar Celdas</h3>
+            <p>Se pueden unir celdas horizontal o verticalmente usando atributos dentro de los elementos <code>&lt;td&gt;</code> o <code>&lt;th&gt;</code>:</p>
+            <ul>
+                <li><strong>colspan</strong>: Determina el número de celdas consecutivas hacia la derecha que debe agrupar. (Ej: <code>colspan="3"</code> une tres celdas en horizontal).</li>
+                <li><strong>rowspan</strong>: Determina el número de celdas consecutivas hacia abajo que debe agrupar. (Ej: <code>rowspan="3"</code> une tres celdas en vertical).</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#titulo">Volver al Titulo</a>
+    </footer>
+</body>
+</html>

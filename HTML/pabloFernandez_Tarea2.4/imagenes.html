@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imágenes</title>
+</head>
+<body>
+    <header>
+        <a href="index.html"><h1 id="titulo">Imagenes</h1></a>
+    </header>
+
+    <main>
+        <section>
+            <h2>El Elemento &lt;img&gt;</h2>
+            <p>La etiqueta <code>&lt;img&gt;</code> es un elemento vacío (no tiene etiqueta de cierre) y se considera como texto al maquetarlo.</p>
+
+            <h3>Atributos Principales</h3>
+            <ul>
+                <li><strong>src</strong>: Es obligatorio e indica la URL (relativa o absoluta) a la imagen.</li>
+                <li><strong>alt</strong>: Indica un texto alternativo que aparecerá cuando la imagen no se pueda cargar o mientras se carga. Es muy recomendable su uso, ya que ayuda a los buscadores y lectores de pantalla.</li>
+                <li><strong>width</strong> y <code>height</code>: Permiten indicar la anchura y la altura de la imagen. No se recomienda su uso para redimensionar, ya que es mejor reducir la imagen previamente con un editor.</li>
+                <li><strong>loading</strong>: Indica la estrategia de carga: <code>eager</code> carga inmediata, por defecto o <code>lazy</code> la carga se difiere hasta que la imagen está próxima a la visualización.</li>
+                <li><strong>srcset</strong> y <code>sizes</code>: Permiten asignar varias imágenes junto con indicaciones para que el navegador elija la versión más adecuada para el dispositivo.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Imágenes Adaptativas: &lt;picture&gt; y &lt;source&gt;</h2>
+            <p>El elemento <code>&lt;picture&gt;</code> es un contenedor que ofrece mayor versatilidad, facilitando la creación de imágenes adaptativas.</p>
+            <p>Contiene elementos <code>&lt;source&gt;</code> (para ofrecer diferentes opciones) y un elemento <code>&lt;img&gt;</code> final como respaldo.</p>
+            <p>El elemento <code>&lt;source&gt;</code> permite proporcionar versiones alternativas del contenido multimedia. Sus atributos clave incluyen:</p>
+            <ul>
+                <li><strong>type</strong>: Tipo MIM* del recurso. Si el tipo no se reconoce, el navegador no mostrará el recurso.</li>
+                <li><strong>media</strong>: Permite determinar las reglas para seleccionar una u otra imagen en función de las características de la ventana o pantalla.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Mapas de Imagen: &lt;map&gt; y &lt;area&gt;</h2>
+            <p>La técnica de mapas de imagen permite dividir una imagen en trozos para asignar un enlace a cada área. Hoy en día está en desuso.</p>
+            <ul>
+                <li>Elemento <code>&lt;map&gt;</code>: Define el mapa de imagen. El atributo <code>name</code> es obligatorio y lo identifica.</li>
+                <li>Etiqueta <code>&lt;img&gt;</code>: Debe usar el atributo <code>usemap</code> con el nombre del mapa, anteponiendo el símbolo <code>#</code>.</li>
+                <li>Elemento <code>&lt;area&gt;</code>: Define cada región enlazable dentro del mapa.
+                    <ul>
+                        <li><strong>shape</strong>: Forma del área: <code>rect</code> rectangular, <code>circle</code> circular o <code>poly</code> poligonal.</li>
+                        <li><strong>coords</strong>: Coordenadas del área, cuyo formato depende de <code>shape</code>.</li>
+                        <li><strong>href</strong>: URL de destino del enlace para esa área.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Elementos de Audio y Video: &lt;video&gt; y &lt;audio&gt;</h2>
+            <p>HTML5 incorporó <code>&lt;video&gt;</code> y <code>&lt;audio&gt;</code>. El problema principal es la incompatibilidad de formatos entre navegadores.</p>
+
+            <h3>Elemento &lt;video&gt;</h3>
+            <p>Permite insertar videos. Puede contener elementos <code>&lt;source&gt;</code> para ofrecer diferentes fuentes de video y asegurar la compatibilidad.</p>
+            <ul>
+                <li><strong>controls</strong>: Si existe, proporciona una interfaz para que el usuario controle la reproducción.</li>
+                <li><strong>autoplay</strong>: Indica que la reproducción debe comenzar automáticamente.</li>
+                <li><strong>loop</strong>: Reproduce el video en bucle.</li>
+                <li><strong>poster</strong>: URL de una imagen que se mostrará mientras el video no se está reproduciendo o se está descargando.</li>
+                <li><strong>preload</strong>: Indica la precarga: <code>auto</code>, <code>none</code> o <code>metadata</code>.</li>
+            </ul>
+
+            <h3>Elemento &lt;audio&gt;</h3>
+            <p>Permite insertar sonido. Sus atributos principales son: <code>src</code>, <code>controls</code>, <code>autoplay</code>, <code>loop</code>, y también puede contener etiquetas <code>&lt;source&gt;</code>.</p>
+        </section>
+        <section>
+            <h2>Otras Formas de Incorporar Multimedia</h2>
+
+            <h3>&lt;canvas&gt;</h3>
+            <p>Proporciona un lienzo sobre el que dibujar gráficos y animaciones mediante programas JavaScript.</p>
+            <ul>
+                <li>Sus atributos clave son <code>id</code>, <code>width</code> y <code>height</code>.</li>
+            </ul>
+
+            <h3>&lt;svg&gt;</h3>
+            <p>Permite incrustar gráficos vectoriales directamente en el documento HTML, definidos mediante etiquetas XML.</p>
+
+            <h3>&lt;iframe&gt;</h3>
+            <p>Permite incrustar contenido que se encuentra ubicado en un contexto distinto a la página que se está mostrando. Es muy popular en la actualidad, usado por ejemplo por YouTube.</p>
+            <ul>
+                <li><strong>src</strong>: URL al recurso incrustado.</li>
+                <li><strong>allowfullscreen</strong>: Si existe, permite al contenido incrustado ocupar la pantalla completa.</li>
+            </ul>
+
+            <h3>&lt;embed&gt; y &lt;object&gt;</h3>
+            <p>Se utilizan para colocar elementos no pertenecientes al lenguaje HTML (como animaciones Flash). <code>&lt;object&gt;</code> es la alternativa recomendada a <code>&lt;embed&gt;</code>.</p>
+            <p>El elemento <code>&lt;object&gt;</code> puede contener elementos <code>&lt;param&gt;</code> para especificar parámetros de presentación al objeto incrustado.</p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#titulo">Volver al Titulo</a>
+    </footer>
+</body>
+</html>

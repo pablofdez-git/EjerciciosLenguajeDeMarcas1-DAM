@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios HTML</title>
+</head>
+<body>
+    <h1>Guía Completa de Elementos Input en HTML</h1>
+    <p>Este documento muestra todos los tipos de inputs disponibles en HTML5</p>
+    
+    <form action="" method="post">
+        
+        <!-- INPUTS DE TEXTO -->
+        <h2>1. Inputs de Texto</h2>
+        
+        <fieldset>
+            <legend>Text - Texto Simple</legend>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Password - Contraseña</legend>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Tu contraseña" minlength="8" required>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Email - Correo Electrónico</legend>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Tel - Teléfono</legend>
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+34 123 456 789" pattern="[0-9]{9}">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>URL - Dirección Web</legend>
+            <label for="website">Sitio Web:</label>
+            <input type="url" id="website" name="website" placeholder="https://ejemplo.com">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Search - Búsqueda</legend>
+            <label for="buscar">Buscar:</label>
+            <input type="search" id="buscar" name="buscar" placeholder="¿Qué buscas?">
+        </fieldset>
+        <br>
+
+        <!-- INPUTS NUMÉRICOS -->
+        <h2>2. Inputs Numéricos</h2>
+
+        <fieldset>
+            <legend>Number - Número</legend>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" min="0" max="120" step="1" value="25">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Range - Rango Deslizante</legend>
+            <label for="volumen">Volumen:</label>
+            <input type="range" id="volumen" name="volumen" min="0" max="100" step="5" value="50">
+            <output for="volumen">50</output>
+        </fieldset>
+        <br>
+
+        <!-- INPUTS DE FECHA Y HORA -->
+        <h2>3. Inputs de Fecha y Hora</h2>
+
+        <fieldset>
+            <legend>Date - Fecha</legend>
+            <label for="fecha">Fecha de nacimiento:</label>
+            <input type="date" id="fecha" name="fecha" min="1900-01-01" max="2025-12-31">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Time - Hora</legend>
+            <label for="hora">Hora de la cita:</label>
+            <input type="time" id="hora" name="hora" step="300">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Datetime-local - Fecha y Hora Local</legend>
+            <label for="datetime">Fecha y hora:</label>
+            <input type="datetime-local" id="datetime" name="datetime">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Month - Mes</legend>
+            <label for="mes">Mes de inicio:</label>
+            <input type="month" id="mes" name="mes">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Week - Semana</legend>
+            <label for="semana">Semana del año:</label>
+            <input type="week" id="semana" name="semana">
+        </fieldset>
+        <br>
+
+        <!-- INPUTS DE SELECCIÓN -->
+        <h2>4. Inputs de Selección</h2>
+
+        <fieldset>
+            <legend>Checkbox - Casillas de Verificación</legend>
+            <p>Selecciona tus intereses:</p>
+            <input type="checkbox" id="deportes" name="intereses" value="deportes">
+            <label for="deportes">Deportes</label><br>
+            <input type="checkbox" id="musica" name="intereses" value="musica" checked>
+            <label for="musica">Música</label><br>
+            <input type="checkbox" id="lectura" name="intereses" value="lectura">
+            <label for="lectura">Lectura</label><br>
+            <input type="checkbox" id="viajes" name="intereses" value="viajes">
+            <label for="viajes">Viajes</label>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Radio - Botones de Opción</legend>
+            <p>Selecciona tu género:</p>
+            <input type="radio" id="masculino" name="genero" value="masculino">
+            <label for="masculino">Masculino</label><br>
+            <input type="radio" id="femenino" name="genero" value="femenino" checked>
+            <label for="femenino">Femenino</label><br>
+            <input type="radio" id="otro" name="genero" value="otro">
+            <label for="otro">Otro</label><br>
+            <input type="radio" id="prefiero-no-decir" name="genero" value="no-decir">
+            <label for="prefiero-no-decir">Prefiero no decir</label>
+        </fieldset>
+        <br>
+
+        <!-- INPUTS DE ARCHIVOS Y COLORES -->
+        <h2>5. Inputs Especiales</h2>
+
+        <fieldset>
+            <legend>File - Subir Archivos</legend>
+            <label for="archivo-unico">Selecciona un archivo:</label>
+            <input type="file" id="archivo-unico" name="archivo-unico"><br><br>
+            
+            <label for="multiples-archivos">Selecciona múltiples archivos:</label>
+            <input type="file" id="multiples-archivos" name="multiples-archivos" multiple><br><br>
+            
+            <label for="solo-imagenes">Solo imágenes:</label>
+            <input type="file" id="solo-imagenes" name="solo-imagenes" accept="image/*"><br><br>
+            
+            <label for="documentos">Documentos PDF:</label>
+            <input type="file" id="documentos" name="documentos" accept=".pdf,.doc,.docx">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Color - Selector de Color</legend>
+            <label for="color-favorito">Color favorito:</label>
+            <input type="color" id="color-favorito" name="color-favorito" value="#667eea">
+        </fieldset>
+
+        <br>
+        <fieldset>
+            <legend>Hidden - Campo Oculto</legend>
+            <p>Este input no es visible pero envía datos:</p>
+            <input type="hidden" id="usuario-id" name="usuario-id" value="12345">
+            <p><em>(Valor oculto: usuario-id = 12345)</em></p>
+        </fieldset>
+        <br>
+
+        <!-- BOTONES -->
+        <h2>6. Botones</h2>
+
+        <fieldset>
+            <legend>Submit - Enviar Formulario</legend>
+            <input type="submit" value="Enviar Formulario">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Reset - Restablecer Formulario</legend>
+            <input type="reset" value="Limpiar Formulario">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Button - Botón Personalizado</legend>
+            <input type="button" value="Clic Aquí">
+        </fieldset>
+        <br>
+
+        <!-- OTROS ELEMENTOS DE FORMULARIO -->
+        <h2>7. Otros Elementos de Formulario (no input)</h2>
+
+        <fieldset>
+            <legend>Textarea - Área de Texto</legend>
+            <label for="comentarios">Comentarios:</label><br>
+            <textarea id="comentarios" name="comentarios" rows="5" cols="50" placeholder="Escribe tus comentarios aquí..."></textarea>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Select - Lista Desplegable</legend>
+            <label for="pais">País:</label>
+            <select id="pais" name="pais" required>
+                <option value="">-- Selecciona un país --</option>
+                <option value="es">España</option>
+                <option value="mx">México</option>
+                <option value="ar">Argentina</option>
+                <option value="co">Colombia</option>
+                <option value="cl">Chile</option>
+            </select>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Select Multiple - Selección Múltiple</legend>
+            <label for="idiomas">Idiomas que hablas:</label>
+            <select id="idiomas" name="idiomas" multiple size="5">
+                <option value="es">Español</option>
+                <option value="en">Inglés</option>
+                <option value="fr">Francés</option>
+                <option value="de">Alemán</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Portugués</option>
+            </select>
+            <p><em>(Mantén pulsado Ctrl para seleccionar múltiples opciones)</em></p>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Datalist - Autocompletado</legend>
+            <label for="navegador">Navegador favorito:</label>
+            <input type="text" id="navegador" name="navegador" list="navegadores">
+            <datalist id="navegadores">
+                <option value="Chrome">
+                <option value="Firefox">
+                <option value="Safari">
+                <option value="Edge">
+                <option value="Opera">
+            </datalist>
+        </fieldset>
+        <br>
+
+        <!-- ATRIBUTOS IMPORTANTES -->
+        <h2>8. Ejemplos con Atributos Importantes</h2>
+
+        <fieldset>
+        <fieldset>
+            <legend>Input Deshabilitado</legend>
+            <label for="campo-deshabilitado">Campo deshabilitado:</label>
+            <input type="text" id="campo-deshabilitado" name="campo-deshabilitado" value="No puedes editar esto" disabled>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Input de Solo Lectura</legend>
+            <label for="campo-readonly">Campo de solo lectura:</label>
+            <input type="text" id="campo-readonly" name="campo-readonly" value="Puedes copiar pero no editar" readonly>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Input con Autoenfoque</legend>
+            <label for="autoenfoque">Este campo tiene autofocus:</label>
+            <input type="text" id="autoenfoque" name="autoenfoque" autofocus placeholder="Enfocado automáticamente">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Input con Autocompletado</legend>
+            <label for="nombre-completo">Nombre completo:</label>
+            <input type="text" id="nombre-completo" name="nombre-completo" autocomplete="name">
+            
+            <label for="email-auto">Email:</label>
+            <input type="email" id="email-auto" name="email-auto" autocomplete="email">
+            
+            <label for="tel-auto">Teléfono:</label>
+            <input type="tel" id="tel-auto" name="tel-auto" autocomplete="tel">
+        </fieldset>
+        <br>
+
+                    <legend>Input con Validación</legend>
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" 
+                   id="username" 
+                   name="username" 
+                   required 
+                   minlength="3" 
+                   maxlength="20" 
+                   pattern="[A-Za-z0-9]+" 
+                   title="Solo letras y números, sin espacios"
+                   placeholder="usuario123">
+        </fieldset>
+        <br>
+
+        <!-- BOTONES FINALES -->
+        <h3>Acciones del Formulario</h3>
+        <input type="submit" value="✓ Enviar Todo">
+        <input type="reset" value="✗ Borrar Todo">
+        <input type="button" value="? Ayuda" onclick="alert('Este es un formulario de ejemplo con todos los tipos de inputs HTML')">
+        
+    </form>
+
+    <footer>
+        <hr>
+        <p><strong>Nota:</strong> Este documento contiene ejemplos de todos los tipos de input disponibles en HTML5.</p>
+        <p>Cada input tiene diferentes atributos como: required, disabled, readonly, min, max, step, pattern, placeholder, etc.</p>
+    </footer>
+
+</body>
+</html>

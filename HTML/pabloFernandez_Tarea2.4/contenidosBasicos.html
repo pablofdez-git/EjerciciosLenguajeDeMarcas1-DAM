@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contenidos Básicos</title>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><h1 id="titulo">Contenidos Básicos</h1></a>
+
+        </header>
+        <main>
+            <section>
+                <h3>Etiquetas y elementos</h3>
+                <p>Las etiquetas son las instrucciones que se utilizan para definir los diferentes elementos de un documento HTML. Estas etiquetas se escriben entre corchetes angulares (&lt; &gt;) y suelen venir en pares: una etiqueta de apertura y una etiqueta de cierre. Por ejemplo, la etiqueta &lt;p&gt; se utiliza para definir un párrafo, y su etiqueta de cierre es &lt;/p&gt;.</p>
+                <code>&ltetiqueta&gt Esto es el contenido de la etiqueta &lt/etiqueta&gt</code>
+                <h3>Atributos</h3>
+                <p>Los atributos proporcionan información adicional sobre un elemento HTML. Se colocan dentro de la etiqueta de apertura y suelen tener un valor asignado. Por ejemplo, el atributo "href" en la etiqueta &lt;a&gt; se utiliza para especificar la URL a la que se enlaza.</p>
+                <code>&ltetiqueta atributo1="valor1" atributo2="valor2"&gt</code>
+                <h3>Comentarios</h3>
+                <p>Los comentarios en HTML se utilizan para agregar notas o explicaciones dentro del código que no serán visibles en el navegador. Los comentarios comienzan con &lt;!-- y terminan con --&gt;.</p>
+                <code>&lt;!-- Este es un comentario en HTML --&gt;</code>
+                <h3>Codigos de idioma</h3>
+                <p>El código de idioma se especifica en el elemento &lthtml&gt ; mediante el atributo <code>lang</code>. Este atributo indica el idioma principal del contenido del documento. Por ejemplo, para indicar que el contenido está en español, se utiliza el código "es".</p>
+                <hr>
+                <h3>Estructura de un documento HTML</h3>
+                <code>
+                    &ltDOCTYPE html&gt
+                    &lthtml lang="es"&gt
+                        &lthead&gt
+                            &ltmeta charset="UTF-8"&gt
+                            &lttitle&gt&lt/title&gt
+                        &lt/head&gt
+                        &ltbody&gt
+                        &lt/body&gt
+                    &lt/html&gt
+                </code>
+            </section>
+            <section>
+                <h4>Elemento &lthead&gt</h4>
+                    <p>Contiene el titulo de la pagina con &lttitle&gt y los metadatos &ltmeta&gt que tienen efecto sobre la representacion de la web en el navegador</p>
+                    <p><b>Tipos de metadatos</b></p>
+                    <ol>
+                        <li><b>charset="":</b> Define la codificación de caracteres del documento.</li>
+                        <li><b>http-equiv + content</b>
+                            <ul>
+                                <li><code>http-equiv="Content_Type" content="text/html; charset=UTF-8"</code>: Especificar el tipo de contenido y el juego de caracteres</li>
+                                <li><code>http-equiv="cache-control" content="no-store"</code>: Especificar cómo debe gestionar el navegador desde el punto de vista de la caché></li>
+                                <li><code>http-equiv="refresh" content="30"</code>: Indicar al navegador que refresque la página cada 30 segundos.</li>
+                            </ul>
+                        </li>
+                        <li><b>name + content</b>
+                            <ul>
+                                <li><code>name="keywords" content="LLMM, marcas, html"</code>: Indicar palabras clave, relacionadas con el contenido, para que los indexadores de los motores de búsqueda puedan clasificar la página de manera más eficiente. </li>
+                                <li><code>name="author/copyright" content="El nombre del autor/nombre del copyright"</code>: Indicar el nombre del autor o el propietario de los derechos de la página web</li>
+                                <li><code>name="viewport" content="width=device-width, initial-scale=1.0"</code>: Determinar el ancho de la zona de representación (viewport) de la página,</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <hr>
+            </section>
+            <section>
+                <h4>Elemento &ltbody&gt</h4>
+                    <p>Contiene todo el contenido visible de la página web, como texto, imágenes, enlaces, tablas, formularios, etc. Es la parte principal del documento HTML y es donde se define la estructura y el diseño de la página.</p>
+                    <h5>Estructura de una pagina</h5>
+                    <ul>
+                        <li><b>&ltheader&gt:</b> Define el encabezado de la página, que generalmente contiene el logotipo, el título y la navegación principal.</li>
+                        <li><b>&ltnav&gt:</b> Define una sección de navegación que contiene enlaces a otras partes del sitio web.</li>
+                        <li><b>&ltmain&gt:</b> Define el contenido principal de la página, que es único para cada página y representa la parte más importante del contenido.</li>
+                        <li><b>&ltsection&gt:</b> Define una sección temática dentro del contenido principal, que puede contener varios elementos relacionados.</li>
+                        <li><b>&ltarticle&gt:</b> Define un artículo independiente dentro del contenido, como una entrada de blog o una noticia.</li>
+                        <li><b>&ltaside&gt:</b> Define contenido adicional o complementario que está relacionado con el contenido principal, como barras laterales o anuncios.</li>
+                        <li><b>&ltfooter&gt:</b> Define el pie de página de la página, que generalmente contiene información de contacto, derechos de autor y enlaces adicionales.</li>
+                    </ul>
+                    <h5>Atributos globales</h5>
+                    <p>Los atributos globales son aquellos que pueden aplicarse a cualquier elemento HTML. Algunos de los atributos globales más comunes son:</p>
+                    <ul>
+                        <li><b>id:</b> Asigna un identificador único a un elemento.</li>
+                        <li><b>class:</b> Asigna una o más clases a un elemento para aplicar estilos CSS.</li>
+                        <li><b>style:</b> Permite aplicar estilos CSS en línea a un elemento.</li>
+                        <li><b>title:</b> Proporciona información adicional sobre un elemento, que se muestra como un tooltip al pasar el cursor sobre él.</li>
+                        <li><b>contenteditable:</b> Si existe, el contenido del elemento es editable</li>
+                        <li><b>hidden:</b> Si existe, el elemento no se representa en el navegador</li>
+                        <li><b>lang:</b> Determina el idioma en el que esta escrito el contenido del elemento</li>
+                        <li><b>spellcheck:</b> Determina si el elemento debe ser analizado ortograficamente y gramaticalmente por el navegador</li>
+                        <li><b>tabindex:</b> Determina el orden de seleccion de los elementos cuando se pulsa <code>Tab</code></li>
+                        <li><b>Translate: </b> Determina si el elemento debe ser traducido o no</li>
+                    </ul>
+            </section>
+        </main>
+        <footer>
+            <a href="#titulo">Volver al Titulo</a>
+        </footer>
+    </body>
+</html>

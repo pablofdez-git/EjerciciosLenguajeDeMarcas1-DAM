@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Carta a los reyes magos</title>
+    </head>
+    <body>
+        <header>
+            <h1>Carta a los reyes magos</h1>
+        </header>
+        <section>
+            <article>
+                <h3>¿Has sido bueno este año?</h3>
+                <form method="post">
+                    <p>Destinatario <select name="reyes">
+                        <option value="1">Melchor</option>
+                        <option value="2">Gaspar</option>
+                        <option value="3">Baltasar</option>
+                    </select></p>
+                <wbr></wbr>
+                <fieldset>
+                    <legend>Datos del remitente</legend>
+                    <p>Nombre Completo: <input type="text" placeholder="Escribe tu nombre" required></p>
+                    <p>Edad: <input type="text" maxlength="2" minlength="1" required></p>
+                    <p>Telefono: <input type="tel" placeholder="666555444" minlength="9" maxlength="9" required></p>
+                    <p>Dirección: <input type="text" placeholder="C/Navidad Nº2 3ºD" required></p>
+                    <p>¿Como te has portado este año? <br>
+                        <input type="radio" required>Muy bien <br>
+                        <input type="radio" required>Bien <br>
+                        <input type="radio" required>Regular <br>
+                        <input type="radio" required>No sabe / No contesta <br>
+                    </p>
+                </fieldset>
+                </form> 
+            </article>
+            <article>
+                <h3>Queridos reyes magos</h3>
+                <form action="post">
+                    <input type="datalist" width="1000" height="200">
+                    <wbr></wbr>
+                    <fieldset>
+                        <legend>Lista de deseos (opcional)</legend>
+                        <p>Deseo 1: <input type="text" placeholder="Ejemplo: Una bicicleta"></p>
+                        <p>Deseo 2: <input type="text" placeholder="Emjemplo: Un videojuego"></p>
+                        <p>Deseo 3: <input type="text" placeholder="Ejemplo: Un libro"></p>
+                    </fieldset>
+                    <wbr></wbr>
+                    <fieldset>
+                        <legend>Preferencia de entrega</legend>
+                        <p>Elige cómo prefieres enviar tu carta</p>
+                    <p><input type="checkbox" name="Correo electronico">Correo electronico <br>
+                        <input type="checkbox" name="Correo Postal">Correo Postal <br>
+                    </p>
+                    </fieldset>
+                    <p><input type="checkbox" required>Confirmo que esta informacion es absolutamente verdad</p>
+                    <input type="submit" name="Enviar Carta">
+                    <input type="submit" name="Borrar Todo">
+                </form>
+            </article>
+        </section>
+        <br>
+        <hr>
+        <footer>
+            <p><a href="Navidad 2025.html"><date datatime="2024">2024</date> - Navidad en Nuestra Comunidad</p></a>
+        </footer>
+    </body>
+</html>

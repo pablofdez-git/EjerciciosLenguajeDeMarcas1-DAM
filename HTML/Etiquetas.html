@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang = es>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejemplo etiquetas</title>
+    </head>
+    <body>
+        <!--/Texto <p> -->
+        <p>Este es un párrafo de texto</p>
+        <!--/Encabezados <h1> a <h6> -->
+        <h1>Encabezado nivel 1</h1>
+        <h2>Encabezado nivel 2</h2>
+        <h3>Encabezado nivel 3</h3>
+        <h4>Encabezado nivel 4</h4>
+        <h5>Encabezado nivel 5</h5>
+        <h6>Encabezado nivel 6</h6>
+        <!--/Salto de linea <br> -->
+        Línea 1<br>
+        Línea 2<br>
+        Línea 3<br>
+        <!--/linea horizontal <hr> -->
+        <p>Primer parrafo</p>
+        <hr>
+        <p>Segundo parrafo</p>
+        <hr>
+        <!--/Negrita <strong>-->
+        <p>Este es un texto en <strong>negrita</strong></p>
+        <!--/Subrayador <mark>-->
+        <p>Este es un texto con una palabra <mark>subrayada</mark>
+        <!--/Citas -->
+            <!--*Cita literal <q cite>-->
+            <p>Como dijo Julio César, <q cite="http://es.wikipedia.org/wiki/Alea_iacta_est">Alea Jacta es</q></p>
+            <!--*Referencia <cite> -->
+            <p>Edgar Codd publicó: <cite> Un nodelo relacional de datos para grandes
+                bancos de datos compartidos </cite> en 1970.</p>
+            <!--*Cita de parrafo <blockquote> -->
+            <blockquote cite="http://es.wikipedia.org/wiki/Anexo:Citas_celebres">
+                <p>La vida es aquello que te va sucediendo mientras te empeñas en hacer otros planes.</p>
+            </blockquote>
+        <!--/Subíndices <sub> y superíndices <sup> -->
+        <p>El agua es H<sub>2</sub>O y el dióxido de carbono es CO<sub>2</sub></p>
+        <p>E = mc<sup>2</sup></p>
+        <!--/Tachado <s> -->
+        <p>Este texto está <s>tachado</s></p>
+        <!--/Subrayado <u> -->
+        <p>Este texto está <u>subrayado</u></p>
+        <!--/Negrita <b> -->
+        <p>Este texto está en <b>negrita</b></p>
+        <!--/Cursiva <i> -->
+        <p>Este texto está en <i>cursiva</i></p>
+        <!--/Abreviatura o acrónimo <abbr> -->
+        <p>De todos los videojuegos, el más exito ha tenido es el <abbr title="Call Of Duty">COD</abbr></p>
+        <!--/Definición <dfn> -->
+        <p>El término <dfn>HTML</dfn> significa HyperText Markup Language</p>
+        <!--/Codigo <code> -->
+        <p>Para imprimir en pantalla en Java se usa el comando <code>System.out.println();</code></p>
+        <!--/Resultados de ordenador <samp> -->
+        <p>El resultado de la operación es <samp>42</samp></p>
+        <!--/Teclas <kbd> -->
+        <p>Para copiar un texto, primero selecciónalo y luego pulsa <kbd>Ctrl + C</kbd></p>
+        <!--/Teclas <var> -->
+        <p>La fórmula de la velocidad es <var>v = d / t</var></p>
+        <!--/Fechas y horas <time datetime=""> -->
+        <p>El examen de programación será el <time datetime="2025-10-21T11:45:00"> 21 de Octubre de 2025 a las 11:45 horas</time></p>
+        <!--/Direccion del texto <bdi> <bdo>-->
+        <p>
+            De izquierda a derecha: 
+            <bdi>Hola mundo</bdi>
+            De derecha a izquierda:
+            <bdi dir="rtl">Hola mundo</bdi>
+        </p>
+        <!--/Division de palabras <wbr> -->
+        <p>Esta es una palabra con posible división: anticonstitucional<wbr>-mente</p>
+        <!--/Delimitador de formato <span> -->
+        <p>Este es un texto con una <span style="color:blue; font-weight:bold;">parte destacada</span></p>
+        <!--/Direccion <address -->
+        <address>
+            Nombre:<br>
+            Juan Pérez<br>
+            Email:<br>
+            juan.perez@gmail.com
+        </address>
+        <!--/Marcado de correcciones <ins> <del> -->
+        <p>Este es un texto con una <ins>parte añadida</ins> y una <del>parte eliminada</del></p>
+        <!--/Lista no ordenada <ul> -->
+        <ul>
+            <li>Elemento 1</li>
+            <li>Elemento 2</li>
+            <li>Elemento 3</li>
+        </ul>
+        <!--/Lista ordenada <ol> -->
+        <ol>
+            <li>Primer elemento</li>
+            <li>Segundo elemento</li>
+            <li>Tercer elemento</li>
+        </ol>
+        <!--/Lista de terminos <dl> <dt> <dd>-->
+        <dl>
+            <dt>HTML</dt>
+            <dd>Lenguaje de Marcado de Hipertexto</dd>
+            <dt>CSS</dt>
+            <dd>Hojas de Estilo en Cascada</dd>
+            <dt>JS</dt>
+            <dd>JavaScript</dd>
+        </dl>
+        <!--/Elementos estructurales -->
+            <!--*<header>: Marca el contenido como cabezera del documento -->
+            <!--*<footer>: Marca el contenido como pie del documento -->
+            <!--*<main>: Indica la seccion principal del documento, solo puede haber uno-->
+            <!--*<section>: Define una seccion en el documento -->
+            <!--*<nav>: marca su contenido como una seccion de enlaces o menú -->
+            <!--*<article>: Define contenido independiente y autonomo -->
+            <!--*<aside>: Define contenido aparte del contenido principal -->
+        <!--/Desplegable <details> <summary> -->
+        <details>
+            <summary>
+                La ciudad de Palencia
+            </summary>
+            <p>Localidad de 80.000 habitantes situada entre los Valles de Cerrato 
+                y la Tierra de Campos en plena meseta castellana
+            </p>
+        </details>
+        <!--/Figure y figcaption-->
+        <figure>
+            <img src="https://www.example.com/imagen.jpg" alt="Descripción de la imagen">
+            <figcaption>Esta es una imagen de ejemplo</figcaption> <!--Pie de foto-->
+        </figure>
+        <!--/Cuadro de diálogo -->
+        <dialog close> <!--Open/Close-->
+            <p>Ejemplo de cuadro de dialogo</p>
+        </dialog>
+        <!--/Enlaces -->
+            <!--*<a>-->
+            <a href="url">NombreUrl</a>
+            <!--*Enlaces internos-->
+            <h1 id="titulo1">Ejemplo titulo</h1>
+            <a href="#titulo1">Ir al titulo</a>
+            <!--*Atributos-->
+                <!--?hreflang: indica el lenguaje-->
+                <!--?type: indica el contenido del enlace-->
+                <!--?target: indica donde abrir la URL: -->
+                    <!--self: en la misma ventana/pestaña-->
+                    <!--blank: en una nueva ventana/pestaña-->
+                    <!--parent: en el contexto de navegacion padre del actual -->
+                    <!--top: en toda la ventana del navegador-->
+                <!--?download: indica que el enlace es de descarga-->
+                <!--?rel: determina la relacion entre el enlace y el recurso: -->
+        <!--/imagenes -->
+            <img src="url_de_la_imagen" alt="Texto alternativo">
+            <!--*Atributos-->
+                <!--?width: ancho de la imagen-->
+                <!--?height: alto de la imagen-->
+                <!--?loading: carga diferida (lazy) o inmediata (eager)-->
+                <!--?usemap: define un mapa de imagen-->
+                <!--?ismap: indica que la imagen es un mapa de imagen-->
+            <!--*picture y source-->
+            <picture>
+                <source srcset="imagen.webp" type="image/webp">
+                <source srcset="imagen.jpg" type="image/jpeg">
+                <img src="imagen.jpg" alt="Descripción de la imagen">
+            </picture>
+        <!--/Mapas de imagen-->
+
+        <!--/Elementos multimedia-->
+
+        <!--/Tablas -->
+
+        <!--/Formularios -->
+            <!--*<form>-->
+                <!--?action: indica el destino de los datos, se pone # cuando no hay direccion -->
+                <!--?method: GET o POST, determina el metodo de envio--->
+            <!--*<Input>-->
+                <!--?Atributos-->
+                    <!--_ list: -->
+                    <!--_ name: -->
+                    <!--_ maxlenght: -->
+                    <!--_ pattern: -->
+                    <!--_ id: -->
+                    <!--_ id: -->
+                    <!--_ id: -->
+
+
+    </body>
+</html>

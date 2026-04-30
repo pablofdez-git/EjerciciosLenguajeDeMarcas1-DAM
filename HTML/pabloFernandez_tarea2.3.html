@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tarea 2.3</title>
+    <body>
+        <header>
+            <h2>Solictud de empleo</h2>
+        </header>
+        <main>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend><b>Datos Personales</b></legend>
+                    <label for="nombre"><u>Nombre:</u></label><br>
+                    <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre" required><br>
+                    <label for="email"><u>Email:</u></label><br>
+                    <input type="email" name="email" id="email" placeholder="Introduce tu email" required><br>
+                    <label for="nacimiento"><u>Fecha de nacimiento:</u></label><br>
+                    <input type="month" name="nacimiento" id="nacimiento" required><br>
+                    <label for="telf"><u>Telefono:</u></label><br>
+                    <input type="tel" name="telf" id="telf" placeholder="637892848" required><br>
+                    <label for="telf2"><u>Telefono Alternativo:</u></label><br>
+                    <input type="tel" name="telf2" id="telf2" placeholder="637892848"><br>
+                    <label for="nacionalidad"><u>Nacionalidad</u></label><br>
+                    <select name="nacionalidad">
+                        <option value="es">España</option>
+                        <option value="fr">Francia</option>
+                        <option value="pt">Portugal</option>
+                        <option value="ig">Inglaterra</option>
+                        <option value="al">Alemania</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend><b>Experiencia Profesional</b></legend>
+                    <label for="anios"><u>Años de Experiencia:</u></label><br>
+                    <input type="number" name="anios" id="anios" maxlength="50" minlength="0" required><br>
+                    <label for="expLaboral"><u>Descripcion de tu última experiencia laboral</u></label><br>
+                    <textarea rows="10" cols="50" name="expLaboral" maxlength="500"></textarea><br>
+                </fieldset>
+                <fieldset>
+                    <legend><b>Habilidades y competencias</b></legend><br>
+                    <label for="habilidades"><u>Habilidades Técnicas:</u></label><br>
+                        <input type="checkbox" name="programacion" id="habilidades" value="prog">Programacion<br>
+                        <input type="checkbox" name="basesDatos" id="habilidades" value="BBDD">Bases de Datos<br>
+                        <input type="checkbox" name="redes" id="habilidades" value="redes">Redes<br>
+                        <input type="checkbox" name="gestionProyectos" id="habilidades" value="gestionProyectos">Gestión de Proyectos<br>
+                    <label for="viaje"><u>Disponibilidad para viajar:</u></label><br>
+                        <label for="si">Sí</label>
+                        <input type="radio" name="viaje" id="si" value="Sí"><br>
+                        <label for="no">No</label>
+                        <input type="radio" name="viaje" id="no" value="No"><br>
+                    <label for="idiomas"><u>Idiomas:</u></label><br>
+                    <select name="idiomas" id="idiomas" multiple="5" size="3" required>
+                        <option value="ingles">Inglés</option>
+                        <option value="frances">Francés</option>
+                        <option value="aleman">Alemán</option>
+                        <option value="italiano">Italiano</option>
+                        <option value="portugues">Portugués</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend><b>Otros detalles</b></legend>
+                    <label for="portfolio"><u>Portfolio:</u></label><br>
+                    <input type="url" name="portfolio" id="portfolio"><br>
+                    <laber for="presentacion"><u>Carta de presentacion</u></laber><br>
+                    <input type="file" name="presentacion" id="presentacion" accept=".pdf,.doc,.docx"><br>
+                </fieldset>
+                <br>
+                <input type="submit" value="Enviar Solicitud">
+                <input type="reset" value="Limpiar formulario">
+            </form>
+        </main>
+    </body>
+</html>
