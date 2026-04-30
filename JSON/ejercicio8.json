@@ -1,0 +1,45 @@
+{
+    "recetas":[
+        {
+            "_id":"R001",
+            "nombre":"Sopa de Cebolla",
+            "comensales":4,
+            "ingredientes":[
+                {
+                    "_cant":1,
+                    "_unidad":"kg",
+                    "nombre":"cebolla"
+                },
+                {
+                    "_cant":2,
+                    "_unidad":1,
+                    "nombre":"Caldo de Carne"
+                },
+                {
+                    "_cant":100,
+                    "_unidad":"gr",
+                    "nombre":"Mantequilla"
+                },
+                {
+                    "_cant":1,
+                    "_unidad":"cucharada",
+                    "nombre":"Harina"
+                },
+                {
+                    "_cant":100,
+                    "_unidad":"gr",
+                    "nombre":"Queso Rallado"
+                },
+                {
+                    "_cant":2,
+                    "_unidad":"rebanada",
+                    "nombre":"Pan tostado"
+                },
+                {
+                    "nombre":"Tomillo"
+                },
+                
+            ]
+        }
+    ]
+}

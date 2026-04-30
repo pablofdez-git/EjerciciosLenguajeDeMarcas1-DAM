@@ -1,0 +1,36 @@
+{
+    "CDs_en_oferta":[
+        {
+            "titulo":"Still got the blues",
+            "artista":"Gary Moore",
+            "pais":"UK",
+            "discografia":"Virgin records",
+            "precio":10.20,
+            "anio_publicacion":1990
+        },
+        {
+            "titulo":"One night only",
+            "artista":"Bee Gees",
+            "pais": null,
+            "discografia":"Polydor",
+            "precio":10.90,
+            "anio_publicacion":1998
+        },
+        {
+            "titulo":"Big Willie style",
+            "artista":"Will Smith",
+            "pais": "USA",
+            "discografia":null,
+            "precio":9.90,
+            "anio_publicacion":1987
+        },
+        {
+            "titulo":"The dock of the bay",
+            "artista":"Otis Redding",
+            "pais":"USA",
+            "discografia":"Atlantic",
+            "precio":7.90,
+            "anio_publicacion":null
+        }
+    ]
+}

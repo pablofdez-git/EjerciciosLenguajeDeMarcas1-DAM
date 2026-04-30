@@ -1,0 +1,25 @@
+{
+    "nombre_pintor":"Van Gogh",
+    "fecha_nacimiento":"30 de Marzo de 1853",
+    "lugar_nacimiento":"Zundert, Paises Bajos",
+    "fecha_defuncion":"29 de Julio de 1890",
+    "obras":[
+        {
+            "titulo":"La noche estrellada",
+            "anio_creacion":1889,
+            "url":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/250px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+        },
+        {
+            "titulo":"Los girasoles",
+            "anio_creacion":1888,
+            "url":"https://www.todocuadros.es/cdn/shop/files/girasoles-ver4.jpg?v=1753184977&width=2048"
+        },
+        {
+            "titulo":"La iglesia de Auvers",
+            "anio_creacion":1890,
+            "url":"https://upload.wikimedia.org/wikipedia/commons/a/ad/Vincent_van_Gogh_-_The_Church_in_Auvers-sur-Oise%2C_View_from_the_Chevet_-_Google_Art_Project.jpg"
+        }
+
+    ]
+
+}
