@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.contenedor {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  max-width: 440px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #1a365d;
+  margin-bottom: 16px;
+}
+
+#mensaje {
+  font-size: 1.1rem;
+  color: #4a5568;
+  min-height: 28px;
+  margin-bottom: 24px;
+}
+
+.controles {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+input[type="number"] {
+  width: 160px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="number"]:focus {
+  border-color: #2c5282;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#btnIntentar {
+  background-color: #2c5282;
+  color: white;
+}
+
+#btnIntentar:hover:not(:disabled) {
+  background-color: #1a365d;
+}
+
+#intentos {
+  font-size: 0.95rem;
+  color: #718096;
+  margin-bottom: 20px;
+}
+
+#btnReiniciar {
+  background-color: #e2e8f0;
+  color: #2d3748;
+}
+
+#btnReiniciar:hover {
+  background-color: #cbd5e0;
+}

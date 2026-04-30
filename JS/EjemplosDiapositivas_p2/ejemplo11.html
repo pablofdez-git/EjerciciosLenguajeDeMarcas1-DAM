@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript</title>
+</head>
+<body>
+	<div id="container">
+		<h1>Contenido Original</h1>
+	</div>
+
+	<p class="parrafo">Este es un párrafo de ejemplo .</p>
+	<p class="parrafo">Este es otro párrafo de ejemplo .</p>
+
+	<ul>
+		<li>Elemento 1</li>
+		<li>Elemento 2</li>
+	</ul>
+
+	<p class="parrafo2">Este es un párrafo de ejemplo .</p>
+	<p class="parrafo2">Este es otro párrafo de ejemplo .</p>
+
+	<script>
+		
+		var container = document.getElementById('container');				// Seleccionar elementos por su id
+		container.innerHTML = "<h1>Nuevo Contenido (modificado)</h1>";		// Modificar el contenido del div con id "container"
+
+		
+		var parrafos = document.getElementsByClassName('parrafo');			// Seleccionar elementos por su clase
+		for (var i = 0; i < parrafos.length; i++) {							// Modificar el contenido de todos los elementos con clase "parrafo"
+			parrafos[i].innerHTML += " (modificado)";
+		}
+
+		
+		var listItems = document.getElementsByTagName('li');				// Seleccionar elementos por su etiqueta
+		for (var i = 0; i < listItems. length; i++) {						// Modificar el contenido de todos los elementos <li>
+			listItems[i].innerHTML += " (modificado)";
+		}
+
+	
+		var primerParrafo = document.querySelector('.parrafo2');			// Seleccionar el primer parrafo utilizando document.querySelector()
+		primerParrafo.innerHTML += " (modificado)";							// Modificar el contenido del primer párrafo
+
+		
+		var parrafos = document.querySelectorAll('.parrafo2');				// Seleccionar todos los parrafos utilizando document.querySelectorAll()
+		for (var i = 0; i < parrafos.length; i++) {							// Modificar el contenido de todos los párrafos
+			parrafos[i].innerHTML += " (modificado)";
+		}
+		
+	</script>
+<body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript</title>
+</head>
+<body>
+	<h1>InnerHTML</h1>
+	<p id="miId1">Contenido 1</p>
+	<p id="miId2">Contenido 2</p>
+	<p id="miId3">Contenido 3</p>
+	<p id="miId4">Contenido 4</p>
+	<p id="miId5">Contenido 5</p>
+	<p id="miId6" class="miClase3">Contenido 6</p>
+	<p id="miId7">Contenido 7</p>
+
+
+	<script>
+		
+		// Cambiar contenido de #miId1
+		document.getElementById("miId1").innerHTML = "Nuevo contenido";
+		// Agregar contenido sin reemplazar el existente = usar +=
+		// Ejemplo: document.getElementById("miId1"). innerHTML += " Texto adicional";
+		// O lo que es lo mismo: document.getElementById("miId1"). innerHTML = document.getElementById("miId1").innerHTML + " nuevo texto";
+
+		//Cambiar contenido de #mild2
+		document.getElementById("miId2").textContent = "Nuevo texto";
+
+		//Añadir la clase rojo a #mild3
+		document.getElementById("miId3").setAttribute("class", "miClase");
+
+		//Poner de color azul #mild4
+		document.getElementById("miId4").style.color = "blue";
+
+		//Escribir ¡Hola mundo! en el documento
+		document.write("¡Hola mundo!");
+
+		// Crear un botón y anadirlo al final del body
+		var boton = document.createElement("button");
+		boton.innerHTML =" Haz clic";
+		document.body.appendChild(boton);
+
+		// Crear un nuevo atributo y establecerlo en un elemento
+		var nuevoAtributo = document.createAttribute("class");
+		nuevoAtributo.value = "miClase2";
+		document.getElementById("miId5").setAttributeNode(nuevoAtributo);
+
+		// Eliminar el atributo 'class' de un elemento
+		document.getElementById("miId6").removeAttribute("class");
+
+		//Eliminar el elemento #mild7
+		document.getElementById("miId7").remove();
+		
+	</script>
+<body>
+</html>

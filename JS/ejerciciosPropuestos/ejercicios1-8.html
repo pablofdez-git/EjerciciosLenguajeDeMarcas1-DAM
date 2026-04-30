@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ejercicios Propuestos</title>
+  </head>
+  <body>
+    <p>Los resultados se muestran por consola</p>
+    <script>
+      console.log("1. Mostrar numeros del 1 al 10");
+      for (let i = 1; i <= 10; i++) {
+        console.log(i);
+      }
+
+      console.log("----------------------------------------------------");
+
+      console.log("2. Mostrar numeros pares del 1 al 20");
+      for (let i = 1; i <= 20; i++) {
+        if (i % 2 == 0) {
+          console.log(i);
+        }
+      }
+
+      console.log("----------------------------------------------------");
+
+      console.log(
+        "3. Calcular e imprimir por consola la suma de los primeros 100 números naturales.",
+      );
+      let suma = 0;
+      for (let i = 1; i <= 100; i++) {
+        suma = suma + i;
+      }
+      console.log(suma);
+
+      console.log("----------------------------------------------------");
+
+      console.log("4. Imprimir por consola la tabla de multiplicar del 5.");
+      let resultado = 0;
+      for (let i = 1; i <= 10; i++) {
+        resultado = 5 * i;
+        console.log(resultado);
+      }
+
+      console.log("----------------------------------------------------");
+
+      console.log(
+        "5. Imprimir por consola todos los elementos de un array de cadenas.",
+      );
+      let array = [1, 2, 3, 4, 5];
+      for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+      }
+
+      console.log("----------------------------------------------------");
+
+      console.log(
+        "6. Calcular e imprimir por consola la suma de los números pares del 1 al 100.",
+      );
+      let sumaPares = 0;
+      for (let i = 1; i <= 100; i++) {
+        if (i % 2 == 0) {
+          sumaPares += i;
+        }
+      }
+      console.log(sumaPares);
+
+      console.log("----------------------------------------------------");
+
+      console.log(
+        "7. Imprimir por consola los números del 10 al 1 en orden descendente.",
+      );
+      for (let i = 10; i >= 1; i--) {
+        console.log(i);
+      }
+
+      console.log("----------------------------------------------------");
+
+      console.log(
+        "8. Calcular e imprimir por consola el promedio de un array de 10 números enteros.",
+      );
+      let array2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      let sumaArray2 = 0;
+      for (let i = 0; i < array2.length; i++) {
+        sumaArray2 += array2[i];
+      }
+      let promedio = sumaArray2 / array2.length;
+      console.log(promedio);
+    </script>
+  </body>
+</html>

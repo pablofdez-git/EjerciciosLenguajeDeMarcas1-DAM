@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="ej2_colorBordeYTexto_style.css">
+	<script src="ej2_colorBordeYTexto_script.js" defer></script>	<!-- Con defer para que no se cargue antes que el html y produzca error -->
+																			<!-- Descarga el archivo de forma asíncrona y lo ejecuta solo cuando el HTML 
+																					se ha procesado por completo. Óptimo para el rendimiento -->
+	<title>Panel configuración visual</title>
+</head>
+<body>
+	<div class="configurador">
+  		<div class="controles">
+    		<h3>Personaliza tu Tarjeta</h3>
+    
+		    <label>Color de fondo:</label>
+		    <input type="color" id="colorFondo" value="#ffffff">
+
+			<label>Color del Borde:</label>
+			<input type="color" id="colorBorde" value="#ddd">
+
+		    <label>Redondeo de esquinas (px):</label>
+		    <input type="range" id="redondeo" min="0" max="50" value="10">
+
+		    <label>Grosor del borde:</label>
+		    <input type="range" id="grosor" min="0" max="10" value="2">
+
+            <label>Tipo de Letra:</label>
+            <select id="tipoLetra">
+                <option value="arial" selected>Arial</option>
+                <option value="monoespace">Monoespace</option>
+                <option value="timesNewRoman">Times New Roman</option>
+                <option value="comic Sans">Comic Sans</option>
+            </select>
+
+            <label>Tamaño de Letra:</label>
+            <select id="tamanioLetra">
+                <option value="14">Pequeño</option>
+                <option value="18" selected>Normal</option>
+                <option value="24">Grande</option>
+                <option value="32">Extra Grande</option>
+            </select>
+  		</div>
+
+		<div class="previsualizacion">
+		    <div id="tarjeta">
+		    	<p>¡Hola! Mira cómo cambio.</p>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>
+

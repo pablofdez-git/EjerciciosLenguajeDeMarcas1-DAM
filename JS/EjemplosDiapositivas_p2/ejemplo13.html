@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta http-equiv="Content-Type" content="text/html"/>
+	<title>JavaScript</title>
+</head>
+<body>
+	<button id="miBoton">Botón 1</button>
+	<button id="miBoton2">Botón 2</button>
+
+	<script>
+
+		// Ejemplo de uso de addEventListener con función
+		const button = document.getElementById('miBoton');
+		button.addEventListener('click', function() {
+			alert('¡Has hecho clic en Botón 1!');
+		});
+
+		// Ejemplo de uso de addEventListener con función flecha
+		const button2 = document.getElementById('miBoton2');
+		const action = () => alert('!Has hecho clic en Boton 2!');
+		button2.addEventListener('click', action);
+	</script>
+
+</body>
+</html>

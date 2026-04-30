@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ejercicios Tema 4</title>
+  </head>
+  <body>
+    <p>Pulsa F12</p>
+    <script>
+        let alojamiento = parseFloat(prompt("Introduce los gastos de alojamiento: "));
+        let alimentacion = parseFloat(prompt("Introduce los gastos de alimentación: "));
+        let entretenimiento = parseFloat(prompt("Introduce los gastos de entretenimiento: "));
+
+        let totalGastos = alojamiento + alimentacion + entretenimiento;
+
+        console.log("El total de gastos del viaje es " + totalGastos.toFixed(2) + "€");
+    </script>
+  </body>
+</html>

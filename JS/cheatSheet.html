@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Súper Laboratorio JS - Edición Neón</title>
+    <style>
+        /* ================= ESTILOS GENERALES Y DISEÑO NEÓN/CRISTAL ================= */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex; height: 100vh; overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e2e8f0;
+        }
+
+        /* EFECTO CRISTAL (Glassmorphism) */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* MENÚ LATERAL */
+        .sidebar { width: 300px; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar h2 { font-size: 1.5em; margin-bottom: 20px; color: #00f2fe; text-shadow: 0 0 10px rgba(0, 242, 254, 0.5); text-align: center; font-weight: 600; }
+        .sidebar h3 { font-size: 0.8em; color: #a0aec0; text-transform: uppercase; margin-top: 20px; letter-spacing: 2px; }
+
+        .menu-btn {
+            width: 100%; text-align: left; background: transparent; border: 1px solid transparent;
+            color: #cbd5e1; padding: 12px 15px; border-radius: 8px; cursor: pointer;
+            transition: all 0.3s ease; font-family: 'Poppins', sans-serif; font-size: 0.95em;
+        }
+        .menu-btn:hover { background: rgba(255, 255, 255, 0.1); transform: translateX(5px); }
+        .menu-btn.activo {
+            background: linear-gradient(90deg, rgba(0, 242, 254, 0.2) 0%, transparent 100%);
+            border-left: 4px solid #00f2fe; color: #fff; font-weight: 600;
+            box-shadow: -5px 0 15px rgba(0, 242, 254, 0.2);
+        }
+
+        /* ZONA CENTRAL */
+        .contenido { flex: 1; padding: 40px 60px; overflow-y: auto; scroll-behavior: smooth; }
+        .seccion { display: none; animation: fadeIn 0.4s ease-out; }
+        .seccion.activa { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .cabecera { margin-bottom: 40px; }
+        .cabecera h1 { color: #fff; font-size: 2.8em; font-weight: 600; background: -webkit-linear-gradient(#00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cabecera p { color: #94a3b8; font-size: 1.1em; margin-top: 5px; }
+
+        /* CONTENIDO DE TEORÍA Y LISTAS */
+        .teoria-box { background: rgba(0, 0, 0, 0.2); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 30px; }
+        .teoria-box h2 { color: #fe0979; margin-bottom: 20px; font-size: 1.5em; border-bottom: 1px solid rgba(254, 9, 121, 0.3); padding-bottom: 10px;}
+        .teoria-box h3 { color: #4facfe; margin: 20px 0 10px 0; }
+        .teoria-box ul { margin-left: 20px; margin-bottom: 15px; }
+        .teoria-box li { margin-bottom: 8px; line-height: 1.6; color: #cbd5e1;}
+        .teoria-box strong { color: #fff; }
+        code { font-family: 'Fira Code', monospace; background: rgba(0, 242, 254, 0.1); color: #00f2fe; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+
+        /* COMPONENTES DE EJERCICIO */
+        .explicacion { background: rgba(0, 242, 254, 0.05); border-left: 4px solid #00f2fe; padding: 15px 20px; border-radius: 0 8px 8px 0; margin-bottom: 30px; font-weight: 300; line-height: 1.6;}
+
+        .caja-codigo { background: #0d1117; border-radius: 10px; overflow: hidden; margin-bottom: 30px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .caja-codigo .titulo-codigo { background: #161b22; padding: 10px 20px; font-family: 'Fira Code', monospace; font-size: 0.85em; border-bottom: 1px solid #30363d; color: #8b949e; display: flex; gap: 8px; align-items: center;}
+        .caja-codigo .titulo-codigo::before { content: ''; display: inline-block; width: 10px; height: 10px; background: #ff5f56; border-radius: 50%; box-shadow: 15px 0 0 #ffbd2e, 30px 0 0 #27c93f; margin-right: 25px;}
+        .caja-codigo pre { padding: 20px; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.9em; color: #c9d1d9; line-height: 1.5; }
+
+        .zona-demo { background: rgba(255, 255, 255, 0.03); padding: 35px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 50px; position: relative; overflow: hidden;}
+        .zona-demo::before { content: 'RESULTADO EN VIVO'; position: absolute; top: 0; right: 0; background: rgba(255,255,255,0.1); padding: 5px 15px; font-size: 0.7em; letter-spacing: 1px; border-bottom-left-radius: 8px; color: #a0aec0;}
+        .zona-demo h3 { margin-bottom: 25px; color: #fff; font-weight: 400; }
+
+        /* INPUTS Y BOTONES NEÓN PARA LAS DEMOS */
+        input[type="text"], input[type="password"] {
+            background: rgba(0,0,0,0.3); border: 1px solid #4facfe; color: white;
+            padding: 12px 15px; border-radius: 8px; outline: none; transition: 0.3s; font-family: 'Poppins', sans-serif;
+        }
+        input[type="text"]:focus, input[type="password"]:focus { box-shadow: 0 0 15px rgba(79, 172, 254, 0.4); }
+
+        .btn-neon {
+            background: linear-gradient(45deg, #fe0979, #ff7b00); border: none; color: white;
+            padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600;
+            transition: 0.3s; font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em;
+        }
+        .btn-neon:hover { box-shadow: 0 0 20px rgba(254, 9, 121, 0.6); transform: translateY(-2px); }
+
+        /* ESTILOS ESPECÍFICOS DEMOS */
+        #demo-task-list { list-style: none; margin-top: 20px; }
+        #demo-task-list li { background: rgba(0,0,0,0.4); padding: 12px 20px; margin-bottom: 8px; display: flex; justify-content: space-between; border-radius: 6px; border-left: 3px solid #00f2fe; align-items: center;}
+        .delete-btn { background: transparent; color: #ff4757; border: 1px solid #ff4757; padding: 4px 10px; border-radius: 4px; cursor: pointer; transition: 0.3s;}
+        .delete-btn:hover { background: #ff4757; color: white; box-shadow: 0 0 10px #ff4757;}
+
+        #demo-tarjeta { width: 100%; height: 200px; background: white; border: 2px solid #333; display: flex; align-items: center; justify-content: center; margin-top: 20px; transition: all 0.3s; color: #333; font-weight: bold;}
+
+        #demo-login-box { position: relative; width: 100%; height: 250px; overflow: hidden; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.2); transition: border-color 0.3s; }
+        #demo-fondo-blur { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070'); background-size: cover; background-position: center; filter: blur(20px); z-index: 1; transition: filter 0.3s; }
+        #demo-login-form { position: relative; z-index: 2; background: rgba(0,0,0,0.6); padding: 30px; border-radius: 12px; text-align: center; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);}
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        ::-webkit-scrollbar-thumb { background: #4facfe; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f2fe; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar glass">
+        <h2>{"JS_LAB"}</h2>
+
+        <h3>📖 Apuntes</h3>
+        <button class="menu-btn activo" onclick="mostrarSeccion('teoria', this)">Apuntes de Clase</button>
+
+        <h3>💻 Ejercicios DOM</h3>
+        <button class="menu-btn" onclick="mostrarSeccion('ej-form', this)">1. Validar Formulario</button>
+        <button class="menu-btn" onclick="mostrarSeccion('ej-todo', this)">2. Lista de Tareas</button>
+        <button class="menu-btn" onclick="mostrarSeccion('ej-tarjeta', this)">3. Config. Visual CSS</button>
+        <button class="menu-btn" onclick="mostrarSeccion('ej-login', this)">4. Login Blur Effect</button>
+
+        <h3>🔥 Modo Examen</h3>
+        <button class="menu-btn" onclick="mostrarSeccion('ej-filtro', this)">5. Buscador de Arrays</button>
+        <button class="menu-btn" onclick="mostrarSeccion('ej-carrito', this)">6. Lógica de Carrito</button>
+    </nav>
+
+    <main class="contenido">
+
+        <section id="teoria" class="seccion activa">
+            <div class="cabecera">
+                <h1>Apuntes Oficiales JS</h1>
+                <p>Todo el temario extraído de los apuntes oficiales para manipulación del DOM.</p>
+            </div>
+
+            <div class="teoria-box">
+                <h2>1. Introducción y Conceptos Básicos</h2>
+                <p>JavaScript es un lenguaje de programación interpretado, orientado a objetos, basado en prototipos, imperativo, débilmente tipado y dinámico.</p>
+                <ul>
+                    <li><strong>Arquitectura Cliente-Servidor:</strong> JS se ejecuta del lado del cliente (en el navegador). Esto agiliza la navegación porque permite procesar datos y validar formularios sin tener que enviar peticiones al servidor y esperar su respuesta.</li>
+                    <li><strong>Implementación en HTML:</strong>
+                        <ul>
+                            <li><strong>Inline:</strong> Directamente en atributos de etiquetas HTML para eventos (ej. <code>&lt;p onclick="..."&gt;</code>).</li>
+                            <li><strong>Etiqueta <code>&lt;script&gt;</code>:</strong> Código embebido dentro del <code>&lt;head&gt;</code> o <code>&lt;body&gt;</code>.</li>
+                            <li><strong>Archivo externo:</strong> Usando <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code>. Es la mejor práctica porque permite reutilizar código, mejora el rendimiento (caché) y facilita el mantenimiento.</li>
+                            <li><strong>Atributo <code>defer</code>:</strong> Se añade a la etiqueta <code>&lt;script&gt;</code> en el <code>&lt;head&gt;</code> para garantizar que el HTML se cargue por completo antes de ejecutar el script, evitando que la página se bloquee.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="teoria-box">
+                <h2>2. Variables y Tipos de Datos</h2>
+                <ul>
+                    <li><strong>Declaración de variables:</strong>
+                        <ul>
+                            <li><code>var</code>: Forma tradicional. Tiene ámbito de función (permite redeclarar).</li>
+                            <li><code>let</code>: Ámbito de bloque. Permite reasignar valores, pero es más seguro que <code>var</code> y evita errores de alcance.</li>
+                            <li><code>const</code>: Ámbito de bloque. Declara constantes de solo lectura cuyo valor no puede ser reasignado una vez inicializado.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Tipos Primitivos:</strong> <code>Number</code> (enteros y decimales), <code>String</code> (texto), <code>Boolean</code> (true/false), <code>Null</code> (ausencia intencional de valor), <code>Undefined</code> (variable declarada pero sin valor asignado).</li>
+                    <li><strong>Tipos No Primitivos:</strong> <code>Object</code> (colección de propiedades), <code>Array</code> (colección ordenada), <code>Function</code>, <code>Date</code>, <code>RegExp</code> (expresiones regulares).</li>
+                    <li><strong>Mostrar variables (Strings):</strong>
+                        <ul>
+                            <li><strong>Concatenación:</strong> Uso del operador <code>+</code> (ej. <code>"Hola " + nombre</code>).</li>
+                            <li><strong>Plantillas de cadena (Template Literals):</strong> Uso de backticks o acento grave ( <code>`</code> ) y <code>${}</code> (ej. <code>`Hola ${nombre}`</code>).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="teoria-box">
+                <h2>3. Interacción, Depuración y Conversión</h2>
+                <ul>
+                    <li><strong>Interacción y Registro:</strong>
+                        <ul>
+                            <li><code>prompt()</code>: Muestra un cuadro de diálogo para que el usuario ingrese datos (texto).</li>
+                            <li><code>alert()</code>: Muestra un cuadro emergente de advertencia/mensaje.</li>
+                            <li><code>console.log()</code>: Imprime mensajes en la consola del navegador (ideal para depurar sin molestar al usuario).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Conversión y Formato Numérico:</strong>
+                        <ul>
+                            <li><code>parseInt()</code>: Convierte una cadena de texto en un número entero.</li>
+                            <li><code>parseFloat()</code>: Convierte una cadena de texto en un número decimal (punto flotante).</li>
+                            <li><code>isNaN()</code>: Determina si un valor NO es un número (Not a Number).</li>
+                            <li><code>toFixed(n)</code>: Formatea un número dejándolo con <code>n</code> decimales fijos a la derecha del punto.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="teoria-box">
+                <h2>4. Operadores y Bucles</h2>
+                <ul>
+                    <li><strong>Operadores Aritméticos:</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (Módulo o resto).</li>
+                    <li><strong>Operadores Lógicos:</strong> <code>&&</code> (AND), <code>||</code> (OR), <code>!</code> (NOT).</li>
+                    <li><strong>Comparación:</strong> <code>==</code> (igual valor), <code>===</code> (igual valor y tipo estricto), <code>!=</code> (diferente), <code>!==</code> (diferente estricto), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>.</li>
+                    <li><strong>Condicionales:</strong> <code>if</code>, <code>else if</code>, <code>else</code>. (Las llaves <code>{}</code> son opcionales si solo hay una línea, pero es buena práctica ponerlas siempre).</li>
+                    <li><strong>Switch:</strong> Evalúa una expresión y ejecuta el bloque <code>case</code> coincidente. Se debe usar <code>break</code> para salir, o <code>default</code> si no hay coincidencias.</li>
+                    <li><strong>Bucles:</strong>
+                        <ul>
+                            <li><code>for</code>: Se usa cuando se conoce el número exacto de iteraciones (ej. <code>for(let i=0; i&lt;5; i++)</code>).</li>
+                            <li><code>while</code>: Repite el bloque mientras la condición sea verdadera.</li>
+                            <li><code>do-while</code>: Se ejecuta al menos una vez antes de comprobar la condición.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="teoria-box">
+                <h2>5. Arrays y Strings (Métodos Útiles)</h2>
+                <ul>
+                    <li><strong>Arrays:</strong> Colecciones ordenadas (los índices empiezan en 0).
+                        <ul>
+                            <li><code>push()</code> / <code>pop()</code>: Añade al final / Elimina y devuelve el último.</li>
+                            <li><code>splice()</code>: Cambia el contenido eliminando o agregando elementos.</li>
+                            <li><code>concat()</code>, <code>join()</code>, <code>reverse()</code>, <code>sort()</code>, <code>forEach()</code>, <code>toString()</code>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Strings:</strong> <code>toUpperCase()</code>, <code>toLowerCase()</code>, <code>indexOf()</code>, <code>lastIndexOf()</code>, <code>slice()</code>, <code>replace()</code>, <code>split()</code>, <code>trim()</code>.</li>
+                </ul>
+            </div>
+
+            <div class="teoria-box">
+                <h2>6. El DOM (Document Object Model)</h2>
+                <p>Representación en forma de árbol del documento HTML. Permite acceder y modificar etiquetas desde JS a través del objeto <code>document</code>.</p>
+                <ul>
+                    <li><strong>Selección de Elementos:</strong>
+                        <ul>
+                            <li><code>document.getElementById('id')</code>: Devuelve un único elemento por su ID.</li>
+                            <li><code>document.getElementsByClassName('clase')</code>: Devuelve una colección de elementos.</li>
+                            <li><code>document.getElementsByTagName('etiqueta')</code>: Devuelve una colección por tipo de etiqueta.</li>
+                            <li><code>document.querySelector('selectorCSS')</code>: Devuelve el PRIMER elemento que coincida (ej. <code>#id</code>, <code>.clase</code>).</li>
+                            <li><code>document.querySelectorAll('selectorCSS')</code>: Devuelve TODOS los elementos coincidentes.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Modificación de Elementos:</strong>
+                        <ul>
+                            <li><code>element.innerHTML</code>: Obtiene/modifica el contenido HTML interno de una etiqueta.</li>
+                            <li><code>element.textContent</code>: Obtiene/modifica el contenido de texto plano.</li>
+                            <li><code>element.setAttribute('atributo', 'valor')</code>: Establece el valor de un atributo.</li>
+                            <li><code>element.style.propiedad = 'valor'</code>: Modifica estilos CSS en línea (ej. <code>element.style.color = "blue"</code>).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Creación y Eliminación:</strong>
+                        <ul>
+                            <li><code>document.createElement('etiqueta')</code>: Crea un nuevo elemento HTML.</li>
+                            <li><code>element.appendChild(nodo)</code>: Añade un nodo al final de los hijos de un elemento.</li>
+                            <li><code>element.remove()</code>: Elimina un elemento del DOM.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="teoria-box">
+                <h2>7. Eventos y Extras Útiles</h2>
+                <ul>
+                    <li><strong><code>addEventListener('evento', funcion)</code>:</strong> Agrega un escuchador a un elemento. Se pueden usar funciones de flecha para un código más limpio.</li>
+                    <li><strong>El objeto Event (<code>e</code>) y Prevención por defecto:</strong> Cuando un evento se dispara, JS genera automáticamente un "objeto evento" que contiene información.
+                        <ul>
+                            <li><code>e.preventDefault()</code>: <strong>Fundamental para formularios.</strong> Cancela el comportamiento por defecto de una etiqueta. Si lo usas en el <code>submit</code> de un <code>&lt;form&gt;</code>, evitas que la página se recargue, permitiéndote validar los datos por JS.</li>
+                        </ul>
+                    </li>
+                    <li><strong><code>classList</code> para manipular clases CSS:</strong> Es la forma recomendada moderna en lugar de sobreescribir atributos con <code>setAttribute</code>.
+                        <ul>
+                            <li><code>element.classList.add('clase')</code>: Añade una clase al elemento sin borrar las que ya tiene.</li>
+                            <li><code>element.classList.remove('clase')</code>: Quita una clase.</li>
+                            <li><code>element.classList.toggle('clase')</code>: Si la tiene, se la quita; si no la tiene, se la pone (ideal para botones de "modo oscuro" o menús desplegables).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="ej-form" class="seccion">
+            <div class="cabecera">
+                <h1>1. Validación de Formulario</h1>
+                <p>Evitar recarga con <code>preventDefault()</code> y validación de campos.</p>
+            </div>
+            <div class="explicacion">
+                El evento <code>submit</code> recarga la página por defecto. Aquí lo interceptamos y decidimos qué hacer mediante JS, mostrando errores o éxitos.
+            </div>
+
+            <div class="caja-codigo">
+                <div class="titulo-codigo">app.js</div>
+                <pre><code>formulario.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+
+    const valor = inputNombre.value;
+    if (valor === "") {
+        mensaje.textContent = "Error: Nombre vacío";
+        mensaje.style.color = "#ff4757";
+    } else {
+        mensaje.textContent = "Éxito: " + valor;
+        mensaje.style.color = "#2ed573";
+        inputNombre.value = "";
+    }
+});</code></pre>
+            </div>
+
+            <div class="zona-demo">
+                <h3>Pruébalo en vivo</h3>
+                <form id="demo-form1" style="display: flex; gap: 10px;">
+                    <input type="text" id="demo-input-form" placeholder="Nombre completo..." style="flex:1;">
+                    <button type="submit" class="btn-neon">Validar</button>
+                </form>
+                <p id="demo-msg-form" style="margin-top:15px; font-weight:600;"></p>
+            </div>
+        </section>
+
+        <section id="ej-todo" class="seccion">
+            <div class="cabecera">
+                <h1>2. Lista de Tareas Dinámica</h1>
+                <p>Creación de Nodos DOM con <code>createElement</code> y <code>appendChild</code>.</p>
+            </div>
+            <div class="explicacion">
+                Cada vez que añades texto, JS crea un nuevo <code>&lt;li&gt;</code> en la memoria, le adjunta un botón de borrar y lo inserta en el HTML visible.
+            </div>
+
+            <div class="caja-codigo">
+                <div class="titulo-codigo">dom_tasks.js</div>
+                <pre><code>function addTask() {
+    const text = inputTarea.value;
+    if (text) {
+        const li = document.createElement('li');
+        li.textContent = text;
+
+        const btnDelete = document.createElement('button');
+        btnDelete.textContent = 'X';
+        btnDelete.addEventListener('click', () => li.remove());
+
+        li.appendChild(btnDelete);
+        listaUl.appendChild(li);
+        inputTarea.value = '';
+    }
+}</code></pre>
+            </div>
+
+            <div class="zona-demo">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="demo-todo-input" placeholder="Nueva directiva..." style="flex:1;">
+                    <button id="demo-todo-btn" class="btn-neon">Añadir Tarea</button>
+                </div>
+                <ul id="demo-task-list"></ul>
+            </div>
+        </section>
+
+        <section id="ej-tarjeta" class="seccion">
+            <div class="cabecera">
+                <h1>3. Editor CSS en Tiempo Real</h1>
+                <p>Lectura de inputs tipo <code>range</code> y <code>color</code>.</p>
+            </div>
+
+            <div class="caja-codigo">
+                <div class="titulo-codigo">css_editor.js</div>
+                <pre><code>function actualizarTarjeta() {
+    tarjeta.style.backgroundColor = inputColor.value;
+    tarjeta.style.borderRadius = inputRadio.value + "px";
+    tarjeta.style.borderWidth = inputGrosor.value + "px";
+}
+
+// El evento 'input' salta mientras arrastras el deslizador
+inputColor.addEventListener('input', actualizarTarjeta);
+inputRadio.addEventListener('input', actualizarTarjeta);</code></pre>
+            </div>
+
+            <div class="zona-demo" style="display:flex; gap:40px; align-items:flex-start; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <label style="display:block; margin-bottom:5px;">Color de Fondo:</label>
+                    <input type="color" id="demo-color" value="#ffffff" style="width:100%; height:40px; margin-bottom:20px; border:none; background:transparent; cursor:pointer;">
+
+                    <label style="display:block; margin-bottom:5px;">Radio Esquinas (px):</label>
+                    <input type="range" id="demo-radio" min="0" max="100" value="0" style="width:100%; margin-bottom:20px;">
+
+                    <label style="display:block; margin-bottom:5px;">Grosor Borde (px):</label>
+                    <input type="range" id="demo-grosor" min="0" max="20" value="2" style="width:100%;">
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <div id="demo-tarjeta"><span>VISTA PREVIA</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ej-login" class="seccion">
+            <div class="cabecera">
+                <h1>4. Password Blur Effect</h1>
+                <p>Uso de matemáticas básicas (<code>Math.abs</code>) y <code>length</code>.</p>
+            </div>
+            <div class="explicacion">
+                Calcula dinámicamente cuántas letras faltan para llegar a 10 y ajusta el filtro <code>blur</code> del fondo en consecuencia.
+            </div>
+
+            <div class="zona-demo">
+                <div id="demo-login-box">
+                    <div id="demo-fondo-blur"></div>
+                    <div id="demo-login-form">
+                        <p style="margin-bottom: 15px; color: white;">Escribe 10 caracteres</p>
+                        <input type="password" id="demo-pass" placeholder="Acceso clasificado...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ej-filtro" class="seccion">
+            <div class="cabecera">
+                <h1>5. Buscador de Elementos (Array Filter)</h1>
+                <p>Bucle para recorrer nodos combinando <code>toLowerCase()</code> y <code>includes()</code>.</p>
+            </div>
+
+            <div class="caja-codigo">
+                <div class="titulo-codigo">search_engine.js</div>
+                <pre><code>inputBuscar.addEventListener('keyup', function() {
+    let textoBuscado = inputBuscar.value.toLowerCase();
+    let elementosLi = document.querySelectorAll('#lista li');
+
+    elementosLi.forEach(li => {
+        let textoLi = li.textContent.toLowerCase();
+        // Si el texto incluye lo que buscamos, lo muestra, si no, lo oculta
+        li.style.display = textoLi.includes(textoBuscado) ? "block" : "none";
+    });
+});</code></pre>
+            </div>
+
+            <div class="zona-demo">
+                <input type="text" id="demo-buscador" placeholder="Buscar tecnología..." style="width:100%; margin-bottom:20px;">
+                <ul id="demo-lista-alumnos" style="list-style:none;">
+                    <li style="background:rgba(0,0,0,0.4); padding:10px 15px; margin-bottom:5px; border-radius:4px;">JavaScript</li>
+                    <li style="background:rgba(0,0,0,0.4); padding:10px 15px; margin-bottom:5px; border-radius:4px;">Python</li>
+                    <li style="background:rgba(0,0,0,0.4); padding:10px 15px; margin-bottom:5px; border-radius:4px;">Java</li>
+                    <li style="background:rgba(0,0,0,0.4); padding:10px 15px; margin-bottom:5px; border-radius:4px;">C++</li>
+                    <li style="background:rgba(0,0,0,0.4); padding:10px 15px; margin-bottom:5px; border-radius:4px;">TypeScript</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="ej-carrito" class="seccion">
+            <div class="cabecera">
+                <h1>6. Lógica Básica de Carrito</h1>
+                <p>Lectura de atributos <code>data-*</code> y acumulación de variables.</p>
+            </div>
+
+            <div class="zona-demo">
+                <div style="display:flex; gap: 20px; margin-bottom:30px; flex-wrap: wrap;">
+                    <div style="flex:1; background:rgba(255,255,255,0.05); padding:20px; border-radius:8px; text-align:center; border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="color:#00f2fe; margin-bottom:10px; font-size:1.2em;">Módulo RAM</h4>
+                        <p style="font-size:1.5em; font-weight:bold; margin-bottom:15px;">50 €</p>
+                        <button class="btn-neon btn-comprar" data-precio="50" style="width:100%; font-size: 0.8em; padding: 10px;">Añadir al Carro</button>
+                    </div>
+                    <div style="flex:1; background:rgba(255,255,255,0.05); padding:20px; border-radius:8px; text-align:center; border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="color:#fe0979; margin-bottom:10px; font-size:1.2em;">SSD 1TB</h4>
+                        <p style="font-size:1.5em; font-weight:bold; margin-bottom:15px;">80 €</p>
+                        <button class="btn-neon btn-comprar" data-precio="80" style="width:100%; font-size: 0.8em; padding: 10px;">Añadir al Carro</button>
+                    </div>
+                </div>
+                <div style="background:linear-gradient(90deg, #16222a, #3a6073); padding:20px 30px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; border: 1px solid #4facfe; box-shadow: 0 0 20px rgba(79, 172, 254, 0.2);">
+                    <h3 style="margin:0;">Total Estimado: <span id="demo-total-carrito" style="color:#00f2fe; font-size: 1.5em; margin-left:10px;">0</span> €</h3>
+                    <button id="demo-vaciar-carrito" style="background:transparent; border:1px solid #ff4757; color:#ff4757; padding:8px 15px; border-radius:6px; cursor:pointer;">Reiniciar Sesión</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // 1. SISTEMA DE PESTAÑAS
+        function mostrarSeccion(idSeccion, btn) {
+            document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('activa'));
+            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('activo'));
+            document.getElementById(idSeccion).classList.add('activa');
+            btn.classList.add('activo');
+        }
+
+        // 2. DEMO FORMULARIO
+        document.getElementById('demo-form1').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = document.getElementById('demo-input-form');
+            const msg = document.getElementById('demo-msg-form');
+            if (input.value.trim() === "") {
+                msg.textContent = "Error: Protocolo rechazado (Campo vacío).";
+                msg.style.color = "#ff4757";
+            } else {
+                msg.textContent = "Acceso concedido al usuario: " + input.value;
+                msg.style.color = "#2ed573";
+                input.value = "";
+            }
+        });
+
+        // 3. DEMO TO-DO LIST
+        document.getElementById('demo-todo-btn').addEventListener('click', () => {
+            const input = document.getElementById('demo-todo-input');
+            const list = document.getElementById('demo-task-list');
+            if (input.value.trim()) {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${input.value}</span> <button class="delete-btn">DEL</button>`;
+                li.querySelector('button').addEventListener('click', () => li.remove());
+                list.appendChild(li);
+                input.value = '';
+            }
+        });
+
+        // 4. DEMO TARJETA CSS
+        const updateCard = () => {
+            document.getElementById('demo-tarjeta').style.backgroundColor = document.getElementById('demo-color').value;
+            document.getElementById('demo-tarjeta').style.borderRadius = document.getElementById('demo-radio').value + "px";
+            document.getElementById('demo-tarjeta').style.borderWidth = document.getElementById('demo-grosor').value + "px";
+        };
+        ['demo-color', 'demo-radio', 'demo-grosor'].forEach(id => document.getElementById(id).addEventListener('input', updateCard));
+
+        // 5. DEMO LOGIN BLUR
+        document.getElementById('demo-pass').addEventListener('input', function() {
+            const l = this.value.length;
+            document.getElementById('demo-fondo-blur').style.filter = `blur(${Math.abs(l - 10) * 2}px)`;
+            const bColor = l === 10 ? "#2ed573" : (l >= 7 && l <= 13 ? "#ffa502" : "#ff4757");
+            document.getElementById('demo-login-box').style.borderColor = bColor;
+        });
+
+        // 6. DEMO BUSCADOR
+        document.getElementById('demo-buscador').addEventListener('keyup', function() {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('#demo-lista-alumnos li').forEach(li => {
+                li.style.display = li.textContent.toLowerCase().includes(term) ? "block" : "none";
+            });
+        });
+
+        // 7. DEMO CARRITO
+        let total = 0;
+        document.querySelectorAll('.btn-comprar').forEach(btn => {
+            btn.addEventListener('click', function() {
+                total += parseFloat(this.getAttribute('data-precio'));
+                document.getElementById('demo-total-carrito').textContent = total;
+            });
+        });
+        document.getElementById('demo-vaciar-carrito').addEventListener('click', () => {
+            total = 0;
+            document.getElementById('demo-total-carrito').textContent = total;
+        });
+    </script>
+</body>
+</html>

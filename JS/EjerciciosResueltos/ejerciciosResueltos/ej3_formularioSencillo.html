@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="ej3_formularioSencillo_style.css">
+	<script src="ej3_formularioSencillo_script.js" defer></script>			<!-- Con defer para que no se cargue antes que el html y produzca error -->
+																			<!-- Descarga el archivo de forma asíncrona y lo ejecuta solo cuando el HTML 
+																					se ha procesado por completo. Óptimo para el rendimiento -->
+	<title>Formulario sencillo</title>
+</head>
+<body>
+	<div class="container">
+  		<div class="card">
+    		<h2>Registro</h2>
+    		<form id="miFormulario">
+      			<div class="group">
+        			<label for="nombre">Nombre Completo</label>
+        			<input type="text" id="nombre" placeholder="Ej. Juan Pérez">
+      			</div>
+      
+      			<button type="submit" id="btnEnviar">Suscribirse</button>
+    		</form>
+    
+    		<p id="mensaje"></p>
+  		</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ejercicios Tema 4</title>
+  </head>
+  <body>
+    <p>Pulsa F12</p>
+    <script>
+        function calcularDescuento(precio, descuento) {
+            let resto = (precio * descuento) / 100;
+            let resultado = precio - resto;
+
+            return resultado;
+        }
+
+        let precio = parseFloat(prompt("Introduce el precio del producto"));
+        let descuento = parseInt(prompt("Introduce el porcentaje de descuento"));
+
+        alert("El precio con descuento es: "+calcularDescuento(precio, descuento));
+    </script>
+  </body>
+</html>
