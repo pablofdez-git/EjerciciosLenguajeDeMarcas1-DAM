@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&display=swap');
+
+#prf1{
+	font-family: Kablammo, sans-serif;
+	font-size: 250%; 
+}
+
+#prf2{
+	font-family: "Butcherman", serif;
+  	font-size: 300%;
+  	font-style: normal;
+}

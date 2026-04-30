@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Vegas Slots</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #ffd700;
+            --dark-gold: #b8860b;
+            --red: #ff0000;
+            --dark-red: #8b0000;
+            --screen-bg: #e0e0e0;
+            --neon-blue: #00ffff;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            user-select: none;
+        }
+
+        /* CARCASA DE LA MÁQUINA */
+        .machine-body {
+            background: linear-gradient(135deg, #444, #222);
+            padding: 30px;
+            border-radius: 30px;
+            border: 8px solid var(--gold);
+            box-shadow: 
+                0 0 20px var(--gold),
+                inset 0 0 50px rgba(0,0,0,0.8);
+            position: relative;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* CABECERA */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--red);
+            background: #000;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--red);
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px var(--red); }
+            50% { opacity: 0.8; text-shadow: 0 0 20px var(--red); }
+        }
+
+        /* PANTALLA DE RODILLOS */
+        .screen-frame {
+            background: #000;
+            padding: 15px;
+            border-radius: 10px;
+            border: 4px solid var(--dark-gold);
+            box-shadow: inset 0 0 20px #000;
+        }
+
+        .reels-container {
+            display: flex;
+            gap: 10px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .reel {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(to bottom, #f0f0f0 0%, #fff 50%, #dcdcdc 100%);
+            border: 2px solid #999;
+            border-radius: 5px;
+            font-size: 3.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* Efecto de movimiento (blur vertical) */
+        .reel.spinning {
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            animation: blurText 0.1s infinite;
+        }
+        
+        .reel.spinning::after {
+            content: "🍒💎7️⃣🔔"; /* Simula ver pasar cosas rápido */
+            position: absolute;
+            top: 0;
+            font-size: 3.5rem;
+            color: rgba(0,0,0,0.3);
+            animation: scroll 0.2s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateY(-50%); }
+            100% { transform: translateY(50%); }
+        }
+
+        /* BOTONES DE STOP INDIVIDUALES */
+        .stops-container {
+            display: flex;
+            justify-content: space-between; /* Alineados con los rodillos */
+            gap: 10px;
+            margin-top: 15px;
+            padding: 0 10px;
+        }
+
+        .stop-btn {
+            width: 80px; /* Mismo ancho que el reel */
+            padding: 10px 0;
+            background: linear-gradient(to bottom, #ff4444, #cc0000);
+            border: none;
+            border-bottom: 5px solid #8b0000;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .stop-btn:active {
+            transform: translateY(4px);
+            border-bottom: 1px solid #8b0000;
+        }
+
+        .stop-btn:disabled {
+            background: #555;
+            border-color: #333;
+            cursor: not-allowed;
+            color: #888;
+        }
+
+        /* PALANCA (LEVER) */
+        .lever-container {
+            width: 40px;
+            height: 200px;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .lever-base {
+            width: 100%;
+            height: 100%;
+            background: #333;
+            border-radius: 10px;
+            border: 2px solid #666;
+        }
+
+        .lever-arm {
+            width: 15px;
+            height: 120px;
+            background: silver;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            transform-origin: bottom center;
+            transition: transform 0.5s ease;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .lever-knob {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ff4444, #8b0000);
+            border-radius: 50%;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Estado activado de la palanca */
+        .lever-pulled .lever-arm {
+            transform: translateX(-50%) rotate(180deg) scaleY(0.5);
+        }
+
+        /* MARCADOR DE DINERO */
+        .dashboard {
+            background: #222;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #555;
+        }
+
+        .display-box {
+            background: #000;
+            color: var(--gold);
+            font-family: 'Press Start 2P', cursive;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .msg-box {
+            background: #333;
+            color: var(--neon-blue);
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            min-height: 24px;
+            border: 1px solid #555;
+        }
+        
+        .win-anim {
+            animation: blinkWin 0.5s infinite;
+            color: #00ff00;
+        }
+
+        @keyframes blinkWin {
+            0%, 100% { background: #333; }
+            50% { background: #225522; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="machine-body">
+        
+        <div class="main-console">
+            <div class="header">
+                $$ LUCKY 777 $$
+            </div>
+
+            <div class="screen-frame">
+                <div class="reels-container">
+                    <div class="reel" id="reel1">🍒</div>
+                    <div class="reel" id="reel2">7️⃣</div>
+                    <div class="reel" id="reel3">🍋</div>
+                </div>
+            </div>
+
+            <div class="stops-container">
+                <button class="stop-btn" id="btn-stop1" onclick="stopReel(0)" disabled>STOP</button>
+                <button class="stop-btn" id="btn-stop2" onclick="stopReel(1)" disabled>STOP</button>
+                <button class="stop-btn" id="btn-stop3" onclick="stopReel(2)" disabled>STOP</button>
+            </div>
+
+            <div class="msg-box" id="message">¡Tira de la palanca!</div>
+            
+            <div class="dashboard">
+                <div>
+                    <div style="font-size: 0.7rem; color: #888;">CRÉDITOS</div>
+                    <div class="display-box" id="balance">100</div>
+                </div>
+                <div>
+                    <div style="font-size: 0.7rem; color: #888;">PREMIO</div>
+                    <div class="display-box" id="last-win">0</div>
+                </div>
+            </div>
+            
+            <div style="margin-top:10px; font-size: 0.7rem; color: #aaa; text-align: center;">
+                7️⃣7️⃣7️⃣ = 500 | 💎💎💎 = 100 | 🔔🔔🔔 = 50 | 🍒🍒🍒 = 20
+            </div>
+        </div>
+
+        <div class="lever-container" id="lever-container">
+            <div class="lever-base"></div>
+            <div class="lever-arm" onclick="pullLever()">
+                <div class="lever-knob"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // CONFIGURACIÓN
+        const symbols = ['🍒', '🍋', '🍇', '🔔', '💎', '7️⃣'];
+        let balance = 100;
+        let costPerSpin = 10;
+        let isSpinning = [false, false, false]; // Estado de cada rodillo
+        let intervals = [null, null, null]; // IDs de los intervalos
+        let gameActive = false;
+
+        // Elementos DOM
+        const reels = [
+            document.getElementById('reel1'),
+            document.getElementById('reel2'),
+            document.getElementById('reel3')
+        ];
+        
+        const stopBtns = [
+            document.getElementById('btn-stop1'),
+            document.getElementById('btn-stop2'),
+            document.getElementById('btn-stop3')
+        ];
+
+        const balanceDisplay = document.getElementById('balance');
+        const winDisplay = document.getElementById('last-win');
+        const msgDisplay = document.getElementById('message');
+        const leverContainer = document.getElementById('lever-container');
+
+        // SONIDOS (Simulados visualmente con texto)
+        function updateMessage(text, isWin = false) {
+            msgDisplay.innerText = text;
+            if (isWin) {
+                msgDisplay.classList.add('win-anim');
+            } else {
+                msgDisplay.classList.remove('win-anim');
+            }
+        }
+
+        // 1. INICIAR EL JUEGO (TIRAR DE LA PALANCA)
+        function pullLever() {
+            if (gameActive) return; // No permitir si ya está girando
+            if (balance < costPerSpin) {
+                updateMessage("¡Falta dinero!");
+                return;
+            }
+
+            // Animación de la palanca
+            leverContainer.classList.add('lever-pulled');
+            setTimeout(() => leverContainer.classList.remove('lever-pulled'), 500);
+
+            // Lógica de cobro
+            balance -= costPerSpin;
+            balanceDisplay.innerText = balance;
+            winDisplay.innerText = "0";
+            updateMessage("¡Suerte!");
+            gameActive = true;
+
+            // Iniciar giro de los 3 rodillos
+            for (let i = 0; i < 3; i++) {
+                startReel(i);
+            }
+        }
+
+        // Función para girar un rodillo específico
+        function startReel(index) {
+            isSpinning[index] = true;
+            stopBtns[index].disabled = false; // Activar botón de stop
+            stopBtns[index].style.backgroundColor = ""; // Reset color
+            
+            reels[index].classList.add('spinning'); // Efecto borroso CSS
+            
+            // Intervalo ultrarrápido para cambiar símbolos
+            intervals[index] = setInterval(() => {
+                const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+                reels[index].innerText = randomSymbol;
+            }, 80); // Velocidad del cambio
+        }
+
+        // 2. PARAR UN RODILLO (Botones individuales)
+        function stopReel(index) {
+            if (!isSpinning[index]) return;
+
+            clearInterval(intervals[index]);
+            isSpinning[index] = false;
+            stopBtns[index].disabled = true;
+            stopBtns[index].style.backgroundColor = "#333";
+            
+            reels[index].classList.remove('spinning');
+            
+            // Sonido "Clack" visual
+            reels[index].style.transform = "scale(1.2)";
+            setTimeout(() => reels[index].style.transform = "scale(1)", 150);
+
+            // Verificar si todos han parado
+            checkEndGame();
+        }
+
+        // 3. VERIFICAR RESULTADO
+        function checkEndGame() {
+            // Si alguno sigue girando, no hacemos nada aún
+            if (isSpinning.includes(true)) return;
+
+            gameActive = false;
+
+            const r1 = reels[0].innerText;
+            const r2 = reels[1].innerText;
+            const r3 = reels[2].innerText;
+
+            let prize = 0;
+
+            // Lógica de premios (3 Iguales)
+            if (r1 === r2 && r2 === r3) {
+                if (r1 === '7️⃣') prize = 500;
+                else if (r1 === '💎') prize = 100;
+                else if (r1 === '🔔') prize = 50;
+                else prize = 20; // Frutas
+            } 
+            // Premio consuelo (2 Iguales)
+            else if (r1 === r2 || r2 === r3 || r1 === r3) {
+                prize = 5; 
+                updateMessage("¡Casi! Par de iguales.");
+            }
+
+            if (prize > 5) { // Si es un premio grande
+                balance += prize;
+                updateMessage(`¡¡JACKPOT!! GANASTE ${prize}`, true);
+                triggerWinEffect();
+            } else if (prize === 5) {
+                balance += prize;
+            } else {
+                updateMessage("Sigue intentando...");
+            }
+
+            balanceDisplay.innerText = balance;
+            winDisplay.innerText = prize;
+        }
+
+        function triggerWinEffect() {
+            document.body.style.backgroundColor = "#220000";
+            setTimeout(() => document.body.style.backgroundColor = "#1a1a1a", 200);
+            setTimeout(() => document.body.style.backgroundColor = "#220000", 400);
+            setTimeout(() => document.body.style.backgroundColor = "#1a1a1a", 600);
+        }
+
+    </script>
+</body>
+</html>

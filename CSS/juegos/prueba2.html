@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Estilo Stumble Guys</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00d2ff;
+            --dark-blue: #3a7bd5;
+            --stumble-purple: #6a11cb;
+            --stumble-green: #2575fc;
+            --btn-green: #66bb6a;
+            --btn-green-shadow: #388e3c;
+            --card-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Fredoka One', cursive;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, var(--primary-blue), var(--stumble-purple));
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            color: #333;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .currency-box {
+            background: #222;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.5);
+        }
+
+        .currency-icon {
+            font-size: 1.2rem;
+        }
+
+        .back-btn {
+            background: #ff5252;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #d32f2f;
+            transition: transform 0.1s;
+        }
+
+        .back-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #d32f2f;
+        }
+
+        /* TIENDA CONTAINER */
+        .store-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 0 #000;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* TARJETAS DE PRODUCTO */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .rarity-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: orange;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 0 #b36b00;
+            transform: rotate(10deg);
+        }
+
+        .skin-legendary .rarity-badge { background: #ffd700; box-shadow: 0 3px 0 #b8860b; color: #333; }
+        .skin-epic .rarity-badge { background: #9c27b0; box-shadow: 0 3px 0 #6a0080; }
+        
+        .item-img {
+            width: 100px;
+            height: 100px;
+            background: #eee;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            border: 3px solid rgba(0,0,0,0.1);
+        }
+
+        .item-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .buy-btn {
+            background: var(--btn-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 0 var(--btn-green-shadow);
+            transition: all 0.1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .buy-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 var(--btn-green-shadow);
+        }
+
+        .buy-btn:disabled {
+            background: #ccc;
+            box-shadow: 0 5px 0 #999;
+            cursor: not-allowed;
+        }
+
+        /* Notificación */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Animación para móvil */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="notification" class="notification">¡Compra realizada con éxito!</div>
+
+    <header>
+        <button class="back-btn">⬅ Salir</button>
+        <div class="user-info">
+            <div class="currency-box">
+                <span class="currency-icon">🟣</span>
+                <span id="tokens-display">150</span>
+            </div>
+            <div class="currency-box" style="background: #205c30; border-color: #4caf50;">
+                <span class="currency-icon">💎</span>
+                <span id="gems-display">1200</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="store-container">
+        <h1>TIENDA DE SKINS</h1>
+        
+        <div class="grid">
+            <div class="card skin-epic">
+                <div class="rarity-badge">ÉPICO</div>
+                <div class="item-img">🥷</div>
+                <div class="item-name">Ninja Azul</div>
+                <button class="buy-btn" onclick="buyItem(350, 'gems')">
+                    350 💎
+                </button>
+            </div>
+
+            <div class="card skin-legendary">
+                <div class="rarity-badge">LEGENDARIO</div>
+                <div class="item-img">🦖</div>
+                <div class="item-name">Dino Rex</div>
+                <button class="buy-btn" onclick="buyItem(800, 'gems')">
+                    800 💎
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="rarity-badge" style="background: #ccc; box-shadow: 0 3px 0 #999;">COMÚN</div>
+                <div class="item-img">👷</div>
+                <div class="item-name">Obrero</div>
+                <button class="buy-btn" onclick="buyItem(50, 'tokens')">
+                    50 🟣
+                </button>
+            </div>
+
+            <div class="card skin-legendary">
+                <div class="rarity-badge">ESPECIAL</div>
+                <div class="item-img">💀</div>
+                <div class="item-name">Esqueleto Oro</div>
+                <button class="buy-btn" onclick="buyItem(1500, 'gems')">
+                    1500 💎
+                </button>
+            </div>
+             <div class="card">
+                <div class="rarity-badge" style="background:red; box-shadow: 0 3px 0 darkred;">OFERTA</div>
+                <div class="item-img">🍌</div>
+                <div class="item-name">Banana Guy</div>
+                <button class="buy-btn" onclick="buyItem(100, 'gems')">
+                    100 💎
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado inicial de las monedas
+        let userGems = 1200;
+        let userTokens = 150;
+
+        // Elementos del DOM
+        const gemsDisplay = document.getElementById('gems-display');
+        const tokensDisplay = document.getElementById('tokens-display');
+        const notif = document.getElementById('notification');
+
+        // Función para comprar
+        function buyItem(price, currencyType) {
+            let success = false;
+
+            if (currencyType === 'gems') {
+                if (userGems >= price) {
+                    userGems -= price;
+                    updateUI();
+                    success = true;
+                } else {
+                    showNotification("❌ ¡No tienes suficientes gemas!", "#d32f2f");
+                }
+            } else if (currencyType === 'tokens') {
+                if (userTokens >= price) {
+                    userTokens -= price;
+                    updateUI();
+                    success = true;
+                } else {
+                    showNotification("❌ ¡No tienes suficientes fichas!", "#d32f2f");
+                }
+            }
+
+            if (success) {
+                showNotification("✅ ¡Compra realizada!", "#4caf50");
+                // Aquí podrías agregar un sonido de "Chaching"
+            }
+        }
+
+        // Actualizar la interfaz
+        function updateUI() {
+            gemsDisplay.innerText = userGems;
+            tokensDisplay.innerText = userTokens;
+            
+            // Animación simple de actualización
+            gemsDisplay.parentElement.style.transform = "scale(1.1)";
+            setTimeout(() => gemsDisplay.parentElement.style.transform = "scale(1)", 200);
+        }
+
+        // Mostrar notificación
+        function showNotification(text, color) {
+            notif.innerText = text;
+            notif.style.background = color;
+            notif.style.display = 'block';
+            
+            setTimeout(() => {
+                notif.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.cuadrado1 {
+    background-color: yellow;
+    border: black 3px solid;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+}
+.cuadrado1 ol{
+    list-style:upper-roman;
+}
+
+.cuadrado2 {
+    background-color: greenyellow;
+    border: dotted red 5px;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;  
+}
+
+.cuadrado2 ul{
+    list-style:circle;
+}

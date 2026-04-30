@@ -1,0 +1,37 @@
+/* Selector universal: todos los elementos */
+*{
+	margin: 3px;
+}
+
+/* Selector de elemento o de tipo: todos los elementos de ese tipo */
+h1{
+	color: rgb(50, 50, 50);
+	font-style: italic;
+}
+
+/* Selectores de clase: todos los elementos de una determinada clase */
+.positivo{
+	color: green;
+	font-weight: bolder;
+}
+
+.negativo{
+	color: red;
+	font-weight: bolder;
+}
+
+/* Selector de identificador: el elemento con ese id (debe ser único) */
+#introduccion{
+	border-style: dotted;
+	padding: 1em;
+}
+
+/* Selectores de atributo */
+input[type]{
+	background-color: rgb(196, 248, 196);
+}
+
+input[type=text]{
+	color: rgb(0, 98, 255);
+	font-weight: bolder;
+}

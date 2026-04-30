@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de alta</title>
+    <link rel="stylesheet" href="tarea3.2_style.css">
+</head>
+<body>
+    <form action="#" method="GET" class="formulario">
+        <h1 class="titulo">Formulario de alta</h1>
+
+        <div class="grupo">
+            <label for="nombre">Nombre <span class="obligatorio">*</span></label>
+            <input type="text" id="nombre" name="nombre" class="campo" placeholder="Introduzca su nombre" required>
+        </div>
+
+        <div class="grupo">
+            <label for="telefono">Teléfono <span class="obligatorio">*</span></label>
+            <input type="tel" id="telefono" name="telefono" class="campo" placeholder="Introduzca su teléfono" required>
+        </div>
+
+        <div class="grupo">
+            <label for="primer_apellido">Primer apellido <span class="obligatorio">*</span></label>
+            <input type="text" id="primer_apellido" name="primer_apellido" class="campo" placeholder="Introduzca su primer apellido" required>
+        </div>
+
+        <div class="grupo">
+            <label for="email">E-mail <span class="obligatorio">*</span></label>
+            <input type="email" id="email" name="email" class="campo" placeholder="Introduzca su email" required>
+        </div>
+
+        <div class="grupo">
+            <label for="segundo_apellido">Segundo apellido <span class="obligatorio">*</span></label>
+            <input type="text" id="segundo_apellido" name="segundo_apellido" class="campo" placeholder="Introduzca su segundo apellido" required>
+        </div>
+
+        <div class="grupo">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" name="direccion" class="campo" placeholder="Introduzca su dirección">
+        </div>
+
+        <div class="grupo ancho-completo">
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" class="campo" placeholder="Asunto de la consulta">
+        </div>
+
+        <div class="grupo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" class="campo" maxlength="300" placeholder="Describa su consulta"></textarea>
+        </div>
+
+        <div class="boton">
+            <button type="submit" class="enviar">Enviar Datos</button>
+        </div>
+    </form>
+</body>
+</html>

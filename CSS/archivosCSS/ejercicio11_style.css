@@ -1,0 +1,12 @@
+.tabla{
+    background-color: aqua;
+    border: 5px red double;
+    padding: 2px;
+    border-spacing: 5px;
+    border-collapse: separate;
+}
+
+.tabla td{
+    border: black 2px solid;
+    padding: 3px 8px 3px 8px;
+}

@@ -1,0 +1,46 @@
+*{
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.bloques{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.bloque1{
+    border: 2px solid black;
+    width: 400px;
+    height: 100px;
+    padding: 10px;
+    background-color: grey;
+}
+
+.bloque2{
+    border: 2px solid black;
+    width: 400px;
+    height: 100px;
+    padding: 10px;
+    text-align: right;
+    background-color: grey;
+
+}
+
+.texto{
+    text-align: right;
+    width: 600px;
+    margin: 250px auto;
+    font-size: 20px;
+}
+
+.footer{
+    border: 2px solid black;
+    text-align: center;
+    background-color: grey;
+    width: 100%;
+    padding-top: 20px;
+    height: 60px;
+    position: fixed;
+    bottom: 0px;
+}

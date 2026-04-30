@@ -1,0 +1,28 @@
+.tabla{
+    background-color: rgb(0, 255, 255);
+    border: 5px rgb(255, 0, 0) double;
+    padding: 2x;
+    border-spacing: 5px;
+    border-collapse: separate;
+}
+
+.tabla td{
+    border: rgb(0, 0, 0) 2px solid;
+    padding: 3px 8px 3px 8px;
+}
+
+.verde{
+    background-color: rgb(0, 128, 0);
+}
+
+.rojo{
+    background-color: rgb(255, 0, 0);
+}
+
+.amarillo{
+    background-color: rgb(255, 255, 0);
+}
+
+.granate{
+    background-color: rgb(126, 1, 1);
+}

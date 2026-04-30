@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Royale: Ruleta Pro</title>
+    <style>
+        :root {
+            --felt: #2b593f;
+            --gold: #f1c40f;
+            --red: #e74c3c;
+            --black: #2c3e50;
+            --white: #ecf0f1;
+            --wheel-size: 320px;
+        }
+
+        body {
+            background-color: #111;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 { color: var(--gold); text-transform: uppercase; letter-spacing: 5px; margin-bottom: 10px; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+        }
+
+        /* --- RULETA --- */
+        .wheel-container {
+            position: relative;
+            width: var(--wheel-size);
+            height: var(--wheel-size);
+            border: 10px solid #4a3b2a; /* Madera */
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            background: #000;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            transition: transform 4s cubic-bezier(0.1, 0.8, 0.1, 1);
+        }
+
+        /* Generaremos los segmentos con JS, pero estilizamos aquí */
+        .wheel-number {
+            position: absolute;
+            width: 30px;
+            height: 50%; /* La mitad del alto para partir del centro hacia arriba */
+            left: calc(50% - 15px);
+            top: 0;
+            transform-origin: bottom center; /* Gira desde el centro de la rueda */
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            padding-top: 5px;
+            box-sizing: border-box;
+            /* Debug: border: 1px solid white; */
+        }
+        
+        .wheel-number span {
+            display: block;
+            transform: rotate(180deg); /* El texto debe mirar hacia afuera */
+        }
+
+        .pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid var(--gold);
+            z-index: 10;
+            filter: drop-shadow(0 2px 2px black);
+        }
+
+        .center-knob {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 40px; height: 40px;
+            background: radial-gradient(circle, var(--gold), #b7950b);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 0 0 10px black;
+        }
+
+        /* --- TABLERO DE APUESTAS (GRID) --- */
+        .betting-table {
+            background-color: var(--felt);
+            padding: 20px;
+            border: 10px solid #4a3b2a;
+            border-radius: 10px;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: 50px repeat(12, 45px) 50px;
+            grid-template-rows: repeat(5, 45px); /* 3 filas num + 2 filas especiales */
+            gap: 2px;
+        }
+
+        /* Celdas generales */
+        .cell {
+            border: 1px solid rgba(255,255,255,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+            color: white;
+            user-select: none;
+        }
+
+        .cell:hover { filter: brightness(1.3); }
+        
+        /* Chip de apuesta (visual) */
+        .chip {
+            position: absolute;
+            width: 25px; height: 25px;
+            background: radial-gradient(circle, var(--gold) 30%, #d35400 100%);
+            border: 2px dashed white;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            z-index: 2;
+            pointer-events: none;
+            display: none; /* Oculto por defecto */
+        }
+
+        .cell.active .chip { display: block; }
+        .cell.active { background-color: rgba(255, 215, 0, 0.3) !important; }
+
+        /* Colores específicos del tablero */
+        .num-red { background-color: var(--red); }
+        .num-black { background-color: var(--black); }
+        .num-green { background-color: #27ae60; }
+        
+        /* Celdas especiales que ocupan más espacio */
+        .cell-0 { grid-row: 1 / 4; grid-column: 1 / 2; border-radius: 5px 0 0 5px; }
+        
+        /* Filas 2 to 1 (derecha) */
+        .cell-row { grid-column: 14 / 15; background-color: transparent; border: 1px solid white; color: white; font-size: 0.8rem; }
+        
+        /* Docenas (abajo) */
+        .cell-dozen { grid-row: 4 / 5; grid-column: span 4; background-color: transparent; }
+        
+        /* Mitades (abajo del todo) */
+        .cell-half { grid-row: 5 / 6; grid-column: span 2; background-color: transparent; }
+        .cell-half.red-bet { background-color: var(--red); }
+        .cell-half.black-bet { background-color: var(--black); }
+
+        /* --- CONTROLES --- */
+        .controls {
+            width: 100%;
+            max-width: 600px;
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            border: 1px solid #444;
+        }
+
+        .money-box { font-size: 1.2rem; color: var(--gold); }
+        
+        button {
+            background: linear-gradient(to bottom, #f1c40f, #f39c12);
+            border: none;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #d35400;
+        }
+
+        button:active { transform: translateY(3px); box-shadow: none; }
+        button:disabled { background: #555; box-shadow: none; color: #888; cursor: not-allowed; }
+
+        #result-display {
+            font-size: 1.5rem;
+            height: 30px;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px black;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Roulette Pro</h1>
+
+    <div id="result-display">Haz tu apuesta</div>
+
+    <div class="game-container">
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel">
+                </div>
+            <div class="center-knob"></div>
+        </div>
+
+        <div class="betting-table">
+            <div class="board-grid" id="board">
+                </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="money-box">Saldo: $<span id="balance">1000</span></div>
+        <div style="text-align: center;">
+            <label>Apuesta: $</label>
+            <input type="number" id="betAmount" value="10" style="width: 60px; padding: 5px; border-radius: 5px; border:none;">
+        </div>
+        <button id="spinBtn" onclick="spin()">¡GIRAR!</button>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN DE DATOS DE LA RULETA (Europea)
+        // Orden real de la rueda (Clockwise desde el 0)
+        const wheelOrder = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
+        
+        // Mapeo de colores
+        const redNums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+        
+        let currentBet = null; // Objeto { type: 'number'|'color'|..., value: 17|'red' }
+        let balance = 1000;
+        let currentRotation = 0;
+
+        // --- 1. GENERAR LA RUEDA VISUAL ---
+        const wheelEl = document.getElementById('wheel');
+        const segmentAngle = 360 / 37;
+
+        wheelOrder.forEach((num, index) => {
+            const el = document.createElement('div');
+            el.className = 'wheel-number';
+            // Calcular color
+            let color = '#27ae60'; // Verde 0
+            if (num !== 0) {
+                color = redNums.includes(num) ? '#e74c3c' : '#2c3e50';
+            }
+            
+            // Creamos un "rayo" de fondo para el color
+            el.style.background = `conic-gradient(from -${segmentAngle/2}deg at 50% 100%, ${color} ${segmentAngle}deg, transparent ${segmentAngle}deg)`;
+            el.style.transform = `rotate(${index * segmentAngle}deg)`;
+            
+            // El número en texto
+            el.innerHTML = `<span style="margin-top: 5px;">${num}</span>`;
+            
+            wheelEl.appendChild(el);
+        });
+
+        // --- 2. GENERAR EL TABLERO (GRID) ---
+        const board = document.getElementById('board');
+        
+        // La grid de números es un poco "tricky" en HTML porque los números van 1,2,3 verticalmente
+        // pero Grid los coloca horizontalmente. Haremos un truco de mapeo.
+        
+        // 2.0 La casilla del CERO
+        createCell('0', 'num-green cell-0', {type: 'number', value: 0}, '0');
+
+        // 2.1 Los números 1-36
+        // Filas de la grid visual: 
+        // Fila 1: 3, 6, 9, 12... 
+        // Fila 2: 2, 5, 8, 11...
+        // Fila 3: 1, 4, 7, 10...
+        // Mapeamos columnas 1 a 12 (en grid son 2 a 13 por el 0)
+        
+        // Función auxiliar para saber el color
+        function getColorClass(n) { return redNums.includes(n) ? 'num-red' : 'num-black'; }
+
+        // Bucle para crear las celdas de números en el orden correcto para CSS Grid
+        // Grid CSS llena por filas, así que tenemos que dibujar primero 3, luego 6...
+        // Fila superior (Row 3 en lógica matemática, Row 1 en visual)
+        for(let c=1; c<=12; c++) {
+            let n = c * 3; 
+            createCell(n, `${getColorClass(n)}`, {type: 'number', value: n}, n);
+        }
+        // Fila media
+        for(let c=1; c<=12; c++) {
+            let n = c * 3 - 1; 
+            createCell(n, `${getColorClass(n)}`, {type: 'number', value: n}, n);
+        }
+        // Fila inferior
+        for(let c=1; c<=12; c++) {
+            let n = c * 3 - 2; 
+            createCell(n, `${getColorClass(n)}`, {type: 'number', value: n}, n);
+        }
+
+        // 2.2 Selectores de Fila (Derecha) "2 to 1"
+        createCell('2 to 1', 'cell-row', {type: 'row', value: 0}, 'row1'); // Arriba (3,6,9...) Resto 0
+        createCell('2 to 1', 'cell-row', {type: 'row', value: 2}, 'row2'); // Medio (2,5,8...) Resto 2
+        createCell('2 to 1', 'cell-row', {type: 'row', value: 1}, 'row3'); // Abajo (1,4,7...) Resto 1
+
+        // 2.3 Docenas (Abajo)
+        // Espaciador bajo el 0
+        let spacer = document.createElement('div'); board.appendChild(spacer);
+        createCell('1st 12', 'cell-dozen', {type: 'dozen', value: 1}, 'doz1');
+        createCell('2nd 12', 'cell-dozen', {type: 'dozen', value: 2}, 'doz2');
+        createCell('3rd 12', 'cell-dozen', {type: 'dozen', value: 3}, 'doz3');
+        
+        // 2.4 Apuestas Simples (Rojo/Negro/Par/Impar)
+        // Espaciador
+        let spacer2 = document.createElement('div'); board.appendChild(spacer2);
+        createCell('1-18', 'cell-half', {type: 'lowhigh', value: 'low'}, 'low');
+        createCell('EVEN', 'cell-half', {type: 'parity', value: 'even'}, 'even');
+        createCell('RED', 'cell-half red-bet', {type: 'color', value: 'red'}, 'cred');
+        createCell('BLACK', 'cell-half black-bet', {type: 'color', value: 'black'}, 'cblack');
+        createCell('ODD', 'cell-half', {type: 'parity', value: 'odd'}, 'odd');
+        createCell('19-36', 'cell-half', {type: 'lowhigh', value: 'high'}, 'high');
+
+
+        // --- FUNCIÓN PARA CREAR CELDAS ---
+        function createCell(text, className, betData, id) {
+            const div = document.createElement('div');
+            div.className = `cell ${className}`;
+            div.innerText = text;
+            div.dataset.bet = JSON.stringify(betData);
+            
+            // Chip visual
+            const chip = document.createElement('div');
+            chip.className = 'chip';
+            div.appendChild(chip);
+
+            // Evento Click
+            div.onclick = function() {
+                if(document.getElementById('spinBtn').disabled) return;
+                
+                // Limpiar apuestas anteriores (para simplificar demo)
+                document.querySelectorAll('.cell').forEach(c => c.classList.remove('active'));
+                
+                // Activar esta
+                div.classList.add('active');
+                currentBet = betData;
+                
+                const amt = document.getElementById('betAmount').value;
+                document.getElementById('result-display').innerText = `Apostando $${amt} a: ${text}`;
+                document.getElementById('result-display').style.color = "#f1c40f";
+            };
+
+            board.appendChild(div);
+        }
+
+        // --- 3. LÓGICA DE GIRO ---
+        function spin() {
+            const betInput = parseInt(document.getElementById('betAmount').value);
+            
+            if (!currentBet) {
+                alert("Por favor selecciona una casilla en el tablero.");
+                return;
+            }
+            if (betInput > balance) {
+                alert("Saldo insuficiente");
+                return;
+            }
+
+            // Cobrar entrada
+            balance -= betInput;
+            document.getElementById('balance').innerText = balance;
+            
+            // UI Update
+            const btn = document.getElementById('spinBtn');
+            btn.disabled = true;
+            document.getElementById('result-display').innerText = "Girando...";
+
+            // CALCULAR RESULTADO
+            // Elegimos un índice aleatorio del array wheelOrder (0 a 36)
+            const winningIndex = Math.floor(Math.random() * 37);
+            const winningNumber = wheelOrder[winningIndex];
+
+            // CALCULAR ROTACIÓN
+            // Queremos que el número ganador quede arriba (pointer).
+            // Cada segmento es `segmentAngle`. 
+            // La rueda gira a la derecha, por lo que el índice N está en -(N * angle).
+            // Añadimos muchas vueltas (360 * 5) + el ángulo exacto.
+            
+            const extraSpins = 360 * 5;
+            const targetAngle = -(winningIndex * segmentAngle); 
+            // Ajustamos currentRotation para que siempre sume y no gire al revés
+            const adjustment = Math.abs(currentRotation % 360); 
+            
+            // Truco matemático para que la transición sea suave desde la posición actual
+            currentRotation = currentRotation + extraSpins + (targetAngle - (currentRotation % 360));
+
+            wheelEl.style.transform = `rotate(${currentRotation}deg)`;
+
+            // ESPERAR RESULTADO
+            setTimeout(() => {
+                checkWin(winningNumber, betInput);
+                btn.disabled = false;
+            }, 4000); // Mismo tiempo que CSS transition
+        }
+
+        // --- 4. VERIFICAR VICTORIA ---
+        function checkWin(number, amount) {
+            const color = (number === 0) ? 'green' : (redNums.includes(number) ? 'red' : 'black');
+            const isEven = (number !== 0 && number % 2 === 0);
+            const isOdd = (number !== 0 && number % 2 !== 0);
+            
+            let won = false;
+            let multiplier = 0;
+
+            // Lógica de comparación según tipo de apuesta
+            switch(currentBet.type) {
+                case 'number':
+                    if (currentBet.value === number) { won = true; multiplier = 35; } // Paga 35 a 1
+                    break;
+                case 'color':
+                    if (currentBet.value === color) { won = true; multiplier = 1; } // Paga 1 a 1
+                    break;
+                case 'parity':
+                    if ((currentBet.value === 'even' && isEven) || (currentBet.value === 'odd' && isOdd)) {
+                        won = true; multiplier = 1;
+                    }
+                    break;
+                case 'dozen':
+                    if (number !== 0) {
+                        if (currentBet.value === 1 && number <= 12) won = true;
+                        if (currentBet.value === 2 && number > 12 && number <= 24) won = true;
+                        if (currentBet.value === 3 && number > 24) won = true;
+                        if (won) multiplier = 2; // Paga 2 a 1
+                    }
+                    break;
+                case 'row':
+                    if (number !== 0 && number % 3 === currentBet.value) {
+                        won = true; multiplier = 2;
+                    }
+                    break;
+                case 'lowhigh':
+                    if (number !== 0) {
+                        if (currentBet.value === 'low' && number <= 18) won = true;
+                        if (currentBet.value === 'high' && number >= 19) won = true;
+                        if (won) multiplier = 1;
+                    }
+                    break;
+            }
+
+            // Mensaje Final
+            const resultText = document.getElementById('result-display');
+            let colorDisplay = color === 'red' ? 'ROJO' : (color === 'black' ? 'NEGRO' : 'VERDE');
+            
+            if (won) {
+                const profit = amount + (amount * multiplier);
+                balance += profit;
+                resultText.innerHTML = `¡GANASTE! Salió <span style='font-size:1.2em'>${number}</span> (${colorDisplay})`;
+                resultText.style.color = "#2ecc71";
+            } else {
+                resultText.innerHTML = `Perdiste. Salió <span style='font-size:1.2em'>${number}</span> (${colorDisplay})`;
+                resultText.style.color = "#e74c3c";
+            }
+            
+            document.getElementById('balance').innerText = balance;
+        }
+
+    </script>
+</body>
+</html>

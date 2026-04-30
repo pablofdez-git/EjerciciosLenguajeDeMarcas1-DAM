@@ -1,0 +1,31 @@
+/*/Comentarios/*/
+    /* Esto es un comentario en CSS */
+/*/Sintaxis Fundamental/*/
+    selector{
+        propiedad1: valor;
+        propiedad2: valor;
+    }
+
+    /**Ejemplo**/
+    p{
+        color: rgb(74, 74, 107);
+        font-size: 16px;
+    }
+/*/Aplicacion de CSS/*/
+    /**inline**/
+        /*_ Se aplica directamente en la etiqueta HTML _*/
+        <elemento style="propiedad: valor; propiedad: valor;"></elemento>
+    /**Interna**/
+        /*_ Se aplica dentro de la etiqueta <head> en un bloque <style> _*/
+        <head>
+            <style>
+                selector{
+                    propiedad: valor;
+                }
+            </style>
+        </head>
+    /**Externa**/
+        /*_ Se aplica mediante un archivo .css externo vinculado en la etiqueta <head> _*/
+        <head>
+            <link rel="stylesheet" href="ruta/al/archivo.css">
+        </head>

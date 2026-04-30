@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+.formulario{
+    font-family: 'Roboto';
+    border: 2px solid black;
+    width: 200px;
+    padding: 10px;
+}
+
+.formulario input{
+    border-radius: 5px;
+    border: 1px solid #AAAAAA;
+}
+
+.formulario input:hover{
+    border-color: #CA5F07;
+}
+
+#envio{
+    background-color: yellow;
+    border: 1px solid #AAAAAA;
+    margin-top: 10px;
+}

@@ -1,0 +1,20 @@
+* {
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.contenedor{
+    width: 650px;
+    border-top: 4px dashed red;
+    border-bottom: 4px dashed red;
+    border-left: 6px dotted blue;
+    border-right: 6px dotted blue;
+}
+
+img {
+    float: left; 
+    margin-top: 20px;
+    margin-left: 20px;
+    border: 3px solid green;
+    padding: 20px;
+}

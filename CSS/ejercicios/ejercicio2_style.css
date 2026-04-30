@@ -1,0 +1,8 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.cta-container{
+    background-image: url(fondo_cieloNubes.avif);
+}

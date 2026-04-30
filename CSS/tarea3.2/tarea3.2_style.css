@@ -1,0 +1,91 @@
+
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 50px 0;
+    background-color: #f0f0f0;
+}
+
+.formulario {
+    width: 45%;
+    margin: 0 auto;
+    background-image: url('fondo.png');
+    background-size: cover;
+    padding: 30px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.titulo {
+    grid-column: span 2;
+    text-align: center;
+    color: #333;
+}
+
+.grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.ancho-completo {
+    grid-column: span 2;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.obligatorio {
+    color: red;
+}
+
+.campo {
+    width: 100%;
+    padding: 10px;
+    background-color: #f6f6f6;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.campo:focus {
+    outline: none;
+    border: 2px solid black;
+    box-shadow: 0 0 8px white;
+}
+
+textarea.campo {
+    height: 110px;
+    resize: none;
+}
+
+.grupo:nth-last-of-type(2) {
+    grid-column: span 2;
+}
+
+.boton {
+    grid-column: span 2;
+    text-align: center;
+}
+
+.enviar {
+    background-color: black;
+    color: white;
+    padding: 8px 35px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 300px;
+}
+
+.enviar:hover {
+    background-color: lightgrey;
+    color: black;
+}

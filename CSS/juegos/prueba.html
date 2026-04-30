@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Personaje</title>
+    <style>
+        /* Estilos generales y fondo parecido a la imagen */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, #f0f4ff 0%, #d9e2ec 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #334e68;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Menú desplegable superior derecho */
+        .dropdown-container {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            z-index: 10;
+        }
+
+        select {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #486581;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            outline: none;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Carrusel de personajes */
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .arrow {
+            background: transparent;
+            border: none;
+            font-size: 40px;
+            color: #bcccdc;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.2s;
+            padding: 20px;
+        }
+
+        .arrow:hover {
+            color: #486581;
+            transform: scale(1.1);
+        }
+
+        /* Estilo de los avatares (Placeholders) */
+        .characters-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            width: 600px;
+        }
+
+        .char-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.4s ease;
+            opacity: 0.5;
+            transform: scale(0.8);
+        }
+
+        .char-slot.active {
+            opacity: 1;
+            transform: scale(1.2);
+            z-index: 2;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .name-label {
+            margin-top: 15px;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: #486581;
+            text-transform: uppercase;
+        }
+
+        /* Información del personaje seleccionado */
+        .info-section {
+            text-align: center;
+            margin-top: 50px;
+            height: 80px;
+        }
+
+        .role {
+            font-size: 14px;
+            font-weight: bold;
+            color: #829ab1;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #627d98;
+        }
+
+        /* Botones inferiores */
+        .btn-seleccionar {
+            margin-top: 20px;
+            padding: 15px 50px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #334e68;
+            background: white;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-seleccionar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-saber-mas {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #627d98;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-saber-mas:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Colores para los placeholders */
+        .bg-blaze { background: linear-gradient(135deg, #ff8a00, #e52e71); }
+        .bg-leafrox { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .bg-spark { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="dropdown-container">
+        <select id="charSelect">
+            <option value="0">Blaze</option>
+            <option value="1" selected>Leafrox</option>
+            <option value="2">Spark</option>
+        </select>
+    </div>
+
+    <div class="carousel">
+        <button class="arrow" id="btnPrev">❮</button>
+
+        <div class="characters-wrapper">
+            <div class="char-slot" id="slot-0">
+                <div class="avatar bg-blaze">🔥</div>
+                <div class="name-label">BLAZE</div>
+            </div>
+            <div class="char-slot active" id="slot-1">
+                <div class="avatar bg-leafrox">🌿</div>
+                <div class="name-label">LEAFROX</div>
+            </div>
+            <div class="char-slot" id="slot-2">
+                <div class="avatar bg-spark">⚡</div>
+                <div class="name-label">SPARK</div>
+            </div>
+        </div>
+
+        <button class="arrow" id="btnNext">❯</button>
+    </div>
+
+    <div class="info-section">
+        <div class="role" id="charRole">TANQUE</div>
+        <div class="description" id="charDesc">Guardián de la selva, poderoso y valiente</div>
+    </div>
+
+    <button class="btn-seleccionar" onclick="alert('¡Has seleccionado a ' + charsData[currentIndex].name + '!')">Seleccionar</button>
+
+    <button class="btn-saber-mas">Saber más...</button>
+</div>
+
+<script>
+    // Datos de los personajes
+    const charsData = [
+        { id: 0, name: 'BLAZE', role: 'ATACANTE', desc: 'Rápido y letal con el fuego.' },
+        { id: 1, name: 'LEAFROX', role: 'TANQUE', desc: 'Guardián de la selva, poderoso y valiente' },
+        { id: 2, name: 'SPARK', role: 'SOPORTE', desc: 'Controla la energía y protege al equipo.' }
+    ];
+
+    let currentIndex = 1; // Empezamos en Leafrox
+
+    // Elementos del DOM
+    const charSelect = document.getElementById('charSelect');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const roleText = document.getElementById('charRole');
+    const descText = document.getElementById('charDesc');
+    const slots = [document.getElementById('slot-0'), document.getElementById('slot-1'), document.getElementById('slot-2')];
+
+    // Función para actualizar la UI
+    function updateSelection(index) {
+        // Asegurar que el índice esté dentro del rango (efecto infinito)
+        if (index < 0) index = 2;
+        if (index > 2) index = 0;
+
+        currentIndex = index;
+
+        // Actualizar el select
+        charSelect.value = currentIndex;
+
+        // Actualizar clases de los avatares
+        slots.forEach((slot, i) => {
+            if (i === currentIndex) {
+                slot.classList.add('active');
+            } else {
+                slot.classList.remove('active');
+            }
+        });
+
+        // Actualizar textos
+        roleText.textContent = charsData[currentIndex].role;
+        descText.textContent = charsData[currentIndex].desc;
+    }
+
+    // Eventos de los botones
+    btnPrev.addEventListener('click', () => updateSelection(currentIndex - 1));
+    btnNext.addEventListener('click', () => updateSelection(currentIndex + 1));
+
+    // Evento del menú desplegable
+    charSelect.addEventListener('change', (e) => {
+        updateSelection(parseInt(e.target.value));
+    });
+</script>
+
+</body>
+</html>

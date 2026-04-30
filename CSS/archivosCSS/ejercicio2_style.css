@@ -1,0 +1,41 @@
+
+*{
+    background-color: rgb(236, 222, 157);
+}
+.tabla{
+    border: 1px black solid;
+    margin: 20px auto;
+}
+.tabla td{
+    border: 1px solid black;
+    padding: 10px;
+    vertical-align: top;
+    font-size: 14px;
+}
+.izq{
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.centro{
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;    
+}
+.drch{
+    text-align: right;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.justificado{
+    text-align: justify;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.centroTd{
+    text-align: center;
+}
+.drchTd{
+    text-align: right;
+}
